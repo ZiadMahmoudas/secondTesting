@@ -1,0 +1,2407 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>عائن للتقييم العقاري</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.css">
+<link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.2/css/all.css">
+<link href="
+https://cdn.jsdelivr.net/npm/lenis@1.3.11/dist/lenis.min.css
+" rel="stylesheet">
+<style>
+    html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+  :root {
+    --indigo: #1B3A6B;
+    --primary: #0095D3;
+    --secondary: #00B589;
+    --common: #F0F6FA;
+    --dark-green: #006B5A;
+    --white: #ffffff;
+    --text-dark: #1a1a2e;
+    --gray: #6B7280;
+    --light-bg: #F7FAFC;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+
+  body {
+    font-family: 'Cairo', 'Tajawal', sans-serif;
+    direction: rtl;
+     overflow-x: hidden;
+    background: #fff;
+    color: var(--text-dark);
+    scroll-behavior: smooth; 
+  }
+
+  /* ========== SCROLLBAR ========== */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: #f1f1f1; }
+  ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 3px; }
+
+  /* ========== NAVBAR ========== */
+  .navbar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 1px 0 rgba(0,0,0,0.08);
+    transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
+  }
+  .navbar.scrolled {
+    box-shadow: 0 4px 30px rgba(0,0,0,0.12);
+    background: rgba(255,255,255,0.98);
+  }
+  .nav-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  .nav-logo img { height: 44px; width: auto; }
+  .nav-logo { flex-shrink: 0; }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    list-style: none;
+    flex: 1;
+    justify-content: center;
+  }
+  .nav-links a {
+    text-decoration: none;
+    color: #444;
+    font-size: 15px;
+    font-weight: 500;
+    position: relative;
+    padding-bottom: 4px;
+    transition: color 0.3s;
+  }
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0; right: 0;
+    width: 0; height: 2px;
+    background: var(--primary);
+    border-radius: 2px;
+    transition: width 0.35s cubic-bezier(0.4,0,0.2,1);
+  }
+  .nav-links a:hover { color: var(--primary); }
+  .nav-links a:hover::after { width: 100%; }
+  .nav-links a.active { color: var(--indigo); font-weight: 700; }
+  .nav-links a.active::after { width: 100%; background: var(--indigo); }
+
+  .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-shrink: 0;
+  }
+  .btn-primary {
+    background: var(--indigo);
+    color: #fff;
+    border: none;
+    padding: 10px 22px;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.3s;
+  }
+  .btn-primary:hover {
+    background: var(--primary);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(0,149,211,0.35);
+  }
+  .btn-outline {
+    background: transparent;
+    color: var(--indigo);
+    border: 2px solid var(--indigo);
+    padding: 9px 20px;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s;
+  }
+  .btn-outline:hover {
+    background: var(--indigo);
+    color: #fff;
+    transform: translateY(-1px);
+  }
+  .lang-btn {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--indigo);
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-family: inherit;
+  }
+
+  /* Hamburger */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 6px;
+    border: none;
+    background: none;
+    z-index: 1100;
+  }
+  .hamburger span {
+    display: block;
+    width: 26px;
+    height: 2.5px;
+    background: var(--indigo);
+    border-radius: 2px;
+    transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
+    transform-origin: center;
+  }
+  .hamburger.open span:nth-child(1) {
+    transform: translateY(7.5px) rotate(45deg);
+  }
+  .hamburger.open span:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+  .hamburger.open span:nth-child(3) {
+    transform: translateY(-7.5px) rotate(-45deg);
+  }
+
+  /* Mobile Menu */
+  .mobile-menu {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: var(--indigo);
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transform: translateY(-100%);
+    transition: transform 0.55s cubic-bezier(0.76,0,0.24,1);
+    opacity: 0;
+  }
+  .mobile-menu.open {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  .mobile-menu-links {
+    list-style: none;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .mobile-menu-links li {
+    overflow: hidden;
+  }
+  .mobile-menu-links a {
+    display: block;
+    font-size: 28px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    padding: 12px 40px;
+    transition: all 0.3s;
+    transform: translateY(40px);
+    opacity: 0;
+  }
+  .mobile-menu.open .mobile-menu-links a {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  .mobile-menu.open .mobile-menu-links li:nth-child(1) a { transition-delay: 0.1s; }
+  .mobile-menu.open .mobile-menu-links li:nth-child(2) a { transition-delay: 0.15s; }
+  .mobile-menu.open .mobile-menu-links li:nth-child(3) a { transition-delay: 0.2s; }
+  .mobile-menu.open .mobile-menu-links li:nth-child(4) a { transition-delay: 0.25s; }
+  .mobile-menu.open .mobile-menu-links li:nth-child(5) a { transition-delay: 0.3s; }
+  .mobile-menu.open .mobile-menu-links li:nth-child(6) a { transition-delay: 0.35s; }
+  .mobile-menu-links a:hover { color: #fff; letter-spacing: 2px; }
+  .mobile-menu-btn {
+    margin-top: 20px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.4s 0.4s;
+  }
+  .mobile-menu.open .mobile-menu-btn {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .mobile-menu-close-area {
+    position: absolute;
+    top: 20px; left: 20px;
+    font-size: 14px;
+    color: rgba(255,255,255,0.4);
+    font-family: inherit;
+  }
+
+  /* ========== HERO ========== */
+  .hero {
+    position: relative;
+    height: 100vh;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #0d2346 0%, #1B3A6B 40%, #0a4a7a 70%, #005a8a 100%);
+  }
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 20% 60%, rgba(0,149,211,0.2) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 40% at 80% 30%, rgba(0,181,137,0.15) 0%, transparent 50%);
+  }
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    animation: gridMove 20s linear infinite;
+  }
+  @keyframes gridMove {
+    0% { transform: translate(0,0); }
+    100% { transform: translate(60px,60px); }
+  }
+  .hero-particles {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+  .particle {
+    position: absolute;
+    width: 4px; height: 4px;
+    background: rgba(255,255,255,0.3);
+    border-radius: 50%;
+    animation: float linear infinite;
+  }
+  @keyframes float {
+    0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 5;
+    text-align: center;
+    max-width: 780px;
+    padding: 0 24px;
+  }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 6px 16px;
+    border-radius: 50px;
+    margin-bottom: 24px;
+    backdrop-filter: blur(10px);
+    animation: fadeInDown 0.8s ease both;
+  }
+  .hero-badge-dot {
+    width: 8px; height: 8px;
+    background: var(--secondary);
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.5); opacity: 0.6; }
+  }
+  .hero-title {
+    font-size: clamp(32px, 6vw, 68px);
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.15;
+    margin-bottom: 20px;
+    animation: fadeInUp 0.9s 0.2s ease both;
+  }
+  .hero-title span { color: var(--primary); }
+  .hero-sub {
+    font-size: clamp(14px, 2vw, 18px);
+    color: rgba(255,255,255,0.8);
+    line-height: 1.8;
+    max-width: 620px;
+    margin: 0 auto 36px;
+    font-weight: 400;
+    animation: fadeInUp 0.9s 0.4s ease both;
+  }
+  .hero-actions {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+    animation: fadeInUp 0.9s 0.6s ease both;
+  }
+  .hero-btn-main {
+    background: var(--primary);
+    color: #fff;
+    padding: 14px 32px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 700;
+    text-decoration: none;
+    font-family: inherit;
+    transition: all 0.3s;
+    box-shadow: 0 8px 30px rgba(0,149,211,0.4);
+  }
+  .hero-btn-main:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(0,149,211,0.55);
+    background: #0088c0;
+  }
+  .hero-btn-sec {
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+    padding: 13px 30px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 700;
+    text-decoration: none;
+    font-family: inherit;
+    border: 1.5px solid rgba(255,255,255,0.3);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s;
+  }
+  .hero-btn-sec:hover {
+    background: rgba(255,255,255,0.2);
+    transform: translateY(-3px);
+    border-color: rgba(255,255,255,0.6);
+  }
+
+  .hero-scroll-hint {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 5;
+    animation: fadeIn 1s 1.2s both;
+  }
+  .scroll-dot {
+    width: 28px; height: 44px;
+    border: 2px solid rgba(255,255,255,0.4);
+    border-radius: 14px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 8px;
+    margin: 0 auto;
+  }
+  .scroll-dot-inner {
+    width: 5px; height: 5px;
+    background: #fff;
+    border-radius: 50%;
+    animation: scrollBounce 2s ease-in-out infinite;
+  }
+  @keyframes scrollBounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(14px); }
+  }
+
+  /* ========== SECTION DEFAULTS ========== */
+  section { padding: 80px 0; }
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+  .section-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--primary);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-label::before {
+    content: '';
+    display: block;
+    width: 28px; height: 2px;
+    background: var(--primary);
+    border-radius: 2px;
+  }
+  .section-title {
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 900;
+    color: var(--indigo);
+    line-height: 1.25;
+    margin-bottom: 14px;
+  }
+  .section-sub {
+    font-size: 17px;
+    color: var(--gray);
+    line-height: 1.7;
+    max-width: 500px;
+  }
+  .text-center .section-sub { margin: 0 auto; }
+
+  /* ========== ABOUT ========== */
+  .about-section {
+    background: #fff;
+    overflow: hidden;
+  }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr ;
+    gap: 60px;
+    align-items: center;
+  }
+  .about-img-wrap {
+    position: relative;
+  }
+  .about-img-wrap img {
+    width: 100%;
+    max-width: 1200px;
+    border-radius: 20px;
+    display: block;
+  }
+  .about-img-badge {
+    position: absolute;
+    bottom: 30px;
+    left: 30px;
+    background: var(--indigo);
+    color: #fff;
+    border-radius: 12px;
+    padding: 16px 20px;
+    box-shadow: 0 10px 40px rgba(27,58,107,0.35);
+  }
+  .about-img-badge .num {
+    font-size: 28px;
+    font-weight: 900;
+    color: var(--primary);
+    display: block;
+  }
+  .about-img-badge .label {
+    font-size: 12px;
+    opacity: 0.85;
+  }
+  .about-text { display: flex; flex-direction: column; gap: 20px; }
+  .about-text p {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.85;
+  }
+  .about-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 10px;
+  }
+  .stat-box {
+    background: var(--common);
+    border-radius: 14px;
+    padding: 20px;
+    text-align: center;
+  }
+  .stat-box .val {
+    font-size: 28px;
+    font-weight: 900;
+    color: var(--indigo);
+    display: block;
+  }
+  .stat-box .stat-label {
+    font-size: 13px;
+    color: var(--gray);
+    margin-top: 4px;
+  }
+
+  /* ========== SERVICES ========== */
+  .services-section { background: var(--light-bg); }
+  .services-header { text-align: center; margin-bottom: 56px; }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+  }
+  .service-card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 32px 28px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+    transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.05);
+  }
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 100%; height: 3px;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.4s ease;
+  }
+  .service-card:hover::before { transform: scaleX(1); transform-origin: left; }
+  .service-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+  }
+  .service-icon {
+    width: 56px; height: 56px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    margin-bottom: 20px;
+    background: linear-gradient(135deg, rgba(0,149,211,0.12), rgba(0,149,211,0.05));
+    color: var(--primary);
+  }
+  .service-title {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--indigo);
+    margin-bottom: 10px;
+  }
+  .service-desc {
+    font-size: 14px;
+    color: #777;
+    line-height: 1.75;
+  }
+  .service-card.featured {
+    background: linear-gradient(135deg, var(--indigo) 0%, #234080 100%);
+    color: #fff;
+  }
+  .service-card.featured .service-title { color: #fff; }
+  .service-card.featured .service-desc { color: rgba(255,255,255,0.75); }
+  .service-card.featured .service-icon {
+    background: rgba(255,255,255,0.15);
+    color: #fff;
+  }
+
+  /* ========== PARTNERS ========== */
+  .partners-section { background: #fff; padding: 60px 0; }
+  .partners-header { text-align: center; margin-bottom: 48px; }
+  .partners-track-wrap { overflow: hidden; position: relative; }
+  .partners-track-wrap::before,
+  .partners-track-wrap::after {
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 100px;
+    z-index: 2;
+  }
+  .partners-track-wrap::before {
+    right: 0;
+    background: linear-gradient(to left, #fff, transparent);
+  }
+  .partners-track-wrap::after {
+    left: 0;
+    background: linear-gradient(to right, #fff, transparent);
+  }
+  .partners-track {
+    display: flex;
+    gap: 50px;
+    width: max-content;
+    /* هنخلي الانيميشن الأساسي للعربي */
+    animation: marqueScrollAr 25s linear infinite;
+    padding-inline-end: 50px; /* عشان تمنع التقطيعة البسيطة وقت إعادة اللفة */
+  }
+
+  /* أنيميشن العربي (RTL) بيتحرك لليمين بالموجب */
+  @keyframes marqueScrollAr {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(50%); } 
+  }
+
+  /* أنيميشن الإنجليزي (LTR) بيتحرك للشمال بالسالب */
+  body.lang-en .partners-track {
+    animation: marqueScrollEn 25s linear infinite;
+  }
+
+  @keyframes marqueScrollEn {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); } 
+  }
+
+  .partners-track:hover { animation-play-state: paused; }
+  .partner-logo {
+    width: 130px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    filter: grayscale(1);
+    opacity: 0.55;
+    transition: all 0.3s;
+    flex-shrink: 0;
+    background: var(--common);
+    border-radius: 12px;
+    padding: 12px;
+  }
+  .partner-logo:hover { filter: grayscale(0); opacity: 1; }
+  .partner-logo img { max-height: 50px; max-width: 100px; object-fit: contain; }
+
+  /* ========== ACHIEVEMENTS ========== */
+  .achievements-section {
+    background: linear-gradient(135deg, var(--indigo) 0%, #0d2a5c 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  .achievements-section::before {
+    content: '';
+    position: absolute;
+    top: -100px; right: -100px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(0,149,211,0.2) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .achievements-section::after {
+    content: '';
+    position: absolute;
+    bottom: -100px; left: -100px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(0,181,137,0.15) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .achievements-header { text-align: center; margin-bottom: 56px; }
+  .achievements-header .section-title { color: #fff; }
+  .achievements-header .section-sub { color: rgba(255,255,255,0.7); margin: 0 auto; }
+  .achievements-header .section-label { color: rgba(255,255,255,0.6); justify-content: center; }
+  .achievements-header .section-label::before { background: rgba(255,255,255,0.4); }
+  .achievements-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    position: relative;
+    z-index: 1;
+  }
+  .achievement-card {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 20px;
+    padding: 32px 24px;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    transition: all 0.4s;
+    position: relative;
+    overflow: hidden;
+  }
+  .achievement-card:hover {
+    background: rgba(255,255,255,0.12);
+    transform: translateY(-6px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  }
+  .achievement-icon {
+    font-size: 36px;
+    margin-bottom: 16px;
+    display: block;
+  }
+  .achievement-icon img{
+    width: 80px;
+  }
+  .achievement-value {
+    font-size: 36px;
+    font-weight: 900;
+    color: var(--primary);
+    display: block;
+    margin-bottom: 6px;
+    line-height: 1.1;
+  }
+  .achievement-label {
+    font-size: 14px;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.5;
+  }
+  .counter-val { display: inline; }
+
+  /* ========== BRANCHES ========== */
+  .branches-section { background: var(--light-bg); }
+  .branches-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: stretch;
+  }
+  .branches-info { display: flex; flex-direction: column; gap: 20px; }
+  .branch-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 24px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    transition: all 0.3s;
+    cursor: pointer;
+    border: 2px solid transparent;
+  }
+  .branch-card:hover, .branch-card.active {
+    border-color: var(--primary);
+    box-shadow: 0 8px 30px rgba(0,149,211,0.18);
+    transform: translateX(-4px);
+  }
+  .branch-icon {
+    width: 44px; height: 44px;
+    background: linear-gradient(135deg, var(--primary), #007eb5);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+  .branch-name {
+    font-size: 17px;
+    font-weight: 800;
+    color: var(--indigo);
+    margin-bottom: 6px;
+  }
+  .branch-address {
+    font-size: 13px;
+    color: var(--gray);
+    line-height: 1.6;
+  }
+  .map-container {
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+    height: 450px;
+  }
+  .map-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+  }
+
+  /* ========== BLOG ========== */
+  .blog-section { background: #fff; }
+  .blog-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 48px;
+  }
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+  .blog-card {
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+    transition: all 0.4s;
+    background: #fff;
+    border: 1px solid rgba(0,0,0,0.06);
+  }
+  .blog-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.13);
+  }
+  .blog-img {
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+  }
+  .blog-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+  }
+  .blog-card:hover .blog-img img { transform: scale(1.08); }
+  .blog-category {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    background: var(--indigo);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 6px;
+  }
+  .blog-body { padding: 22px; }
+  .blog-title {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--indigo);
+    margin-bottom: 10px;
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .blog-excerpt {
+    font-size: 13px;
+    color: var(--gray);
+    line-height: 1.7;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .blog-footer {
+    padding: 16px 22px;
+    border-top: 1px solid rgba(0,0,0,0.06);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .blog-date { font-size: 12px; color: var(--gray); }
+  .blog-read {
+    font-size: 12px;
+    color: var(--primary);
+    font-weight: 700;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    transition: gap 0.3s;
+  }
+  .blog-card:hover .blog-read { gap: 8px; }
+
+  /* ========== CTA ========== */
+  .cta-section { padding: 60px 0; }
+  .cta-inner {
+    background: linear-gradient(135deg, var(--indigo) 0%, #0d2a5c 100%);
+    border-radius: 24px;
+    padding: 70px 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-inner::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,149,211,0.25) 0%, transparent 70%);
+  }
+  .cta-inner::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: -80px;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,181,137,0.2) 0%, transparent 70%);
+  }
+  .cta-title {
+    font-size: clamp(28px, 4vw, 48px);
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.2;
+    position: relative;
+    z-index: 1;
+  }
+  .cta-sub {
+    font-size: 16px;
+    color: rgba(255,255,255,0.75);
+    max-width: 480px;
+    line-height: 1.7;
+    position: relative;
+    z-index: 1;
+  }
+  .cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--primary);
+    color: #fff;
+    font-family: inherit;
+    font-size: 17px;
+    font-weight: 700;
+    padding: 16px 36px;
+    border-radius: 12px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 8px 30px rgba(0,149,211,0.4);
+  }
+  .cta-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 40px rgba(0,149,211,0.55);
+    background: #0088c0;
+  }
+  .cta-arrow {
+    display: inline-block;
+    animation: arrowPulse 1.5s ease-in-out infinite;
+  }
+  @keyframes arrowPulse {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(-6px); }
+  }
+
+  /* ========== FOOTER ========== */
+  .footer {
+    background: var(--common);
+    padding: 70px 0 30px;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 48px;
+    margin-bottom: 56px;
+  }
+  .footer-brand img { height: 50px; margin-bottom: 16px; }
+  .footer-brand p {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.7;
+    max-width: 260px;
+    margin-bottom: 24px;
+  }
+  .footer-socials {
+    display: flex;
+    gap: 10px;
+  }
+  .social-btn {
+    width: 38px; height: 38px;
+    border-radius: 10px;
+    background: var(--indigo);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    text-decoration: none;
+    transition: all 0.3s;
+  }
+  .social-btn:hover {
+    background: var(--primary);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0,149,211,0.35);
+  }
+  .footer-col-title {
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--indigo);
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid rgba(0,0,0,0.08);
+  }
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-links a {
+    text-decoration: none;
+    font-size: 14px;
+    color: #666;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .footer-links a::before {
+    content: '←';
+    font-size: 11px;
+    color: var(--primary);
+    opacity: 0;
+    transform: translateX(6px);
+    transition: all 0.3s;
+  }
+  .footer-links a:hover { color: var(--primary); padding-right: 6px; }
+  .footer-links a:hover::before { opacity: 1; transform: translateX(0); }
+  .footer-contact { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+  .footer-contact li {
+    display: flex;
+    gap: 10px;
+    font-size: 14px;
+    color: #666;
+    align-items: center;
+  }
+  .footer-contact li span:first-child { font-size: 18px; }
+  .footer-bottom {
+    border-top: 1px solid rgba(0,0,0,0.1);
+    padding-top: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+  .footer-bottom p { font-size: 13px; color: #999; }
+  .footer-bottom a { color: #999; text-decoration: none; }
+  .footer-bottom a:hover { color: var(--primary); }
+
+  /* ========== NEWSLETTER STRIP ========== */
+  .newsletter-strip {
+    background: var(--primary);
+    padding: 40px 0;
+  }
+  .newsletter-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    flex-wrap: wrap;
+  }
+  .newsletter-text h3 {
+    font-size: 22px;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 6px;
+  }
+  .newsletter-text p { font-size: 14px; color: rgba(255,255,255,0.8); }
+  .newsletter-form {
+    display: flex;
+    gap: 10px;
+    flex: 1;
+    max-width: 450px;
+  }
+  .newsletter-form input {
+    flex: 1;
+    padding: 12px 18px;
+    border-radius: 10px;
+    border: 2px solid rgba(255,255,255,0.2);
+    background: rgba(255,255,255,0.15);
+    color: #fff;
+    font-family: inherit;
+    font-size: 14px;
+    outline: none;
+    backdrop-filter: blur(10px);
+    transition: border-color 0.3s;
+  }
+  .newsletter-form input::placeholder { color: rgba(255,255,255,0.65); }
+  .newsletter-form input:focus { border-color: rgba(255,255,255,0.6); }
+  .newsletter-form button {
+    background: #fff;
+    color: var(--primary);
+    border: none;
+    padding: 12px 22px;
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s;
+    flex-shrink: 0;
+  }
+  .newsletter-form button:hover {
+    background: var(--indigo);
+    color: #fff;
+    transform: translateX(-2px);
+  }
+
+  /* ========== WHATSAPP ========== */
+  .whatsapp-fab {
+    position: fixed;
+    bottom: 77px;
+    left: 30px;
+    z-index: 999;
+    width: 48px; height: 48px;
+    background: #25D366;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 25px rgba(37,211,102,0.45);
+    text-decoration: none;
+    transition: all 0.3s;
+    animation: wabounce 3s 2s ease-in-out infinite;
+  }
+  .whatsapp-fab:hover {
+    transform: scale(1.1);
+    box-shadow: 0 10px 35px rgba(37,211,102,0.6);
+  }
+  @keyframes wabounce {
+    0%, 100% { box-shadow: 0 6px 25px rgba(37,211,102,0.45); }
+    50% { box-shadow: 0 10px 40px rgba(37,211,102,0.7); }
+  }
+
+  /* ========== SCROLL ANIMATIONS ========== */
+  .reveal {
+    opacity: 0;
+    transition: opacity 0.7s cubic-bezier(0.4,0,0.2,1),
+                transform 0.7s cubic-bezier(0.4,0,0.2,1);
+  }
+  .reveal.from-bottom { transform: translateY(50px); }
+  .reveal.from-left { transform: translateX(-60px); }
+  .reveal.from-right { transform: translateX(60px); }
+  .reveal.from-scale { transform: scale(0.88); }
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+  .reveal-delay-5 { transition-delay: 0.5s; }
+
+  /* ========== KEYFRAMES ========== */
+  @keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  /* ========== RESPONSIVE ========== */
+  @media (max-width: 1024px) {
+    /* .about-grid { grid-template-columns: 1fr; gap: 40px; } */
+    .about-img-wrap { max-width: 500px; margin: 0 auto; }
+    .achievements-grid { grid-template-columns: repeat(2, 1fr); }
+    .blog-grid { grid-template-columns: repeat(2, 1fr); }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+  }
+@media(min-width:768px){
+    .about-grid{
+        grid-template-columns: 1fr 1fr;
+    }
+}
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .nav-actions { display: none; }
+    .hamburger { display: flex; }
+    .branches-grid { grid-template-columns: 1fr; }
+    .map-container { height: 300px; order: -1; }
+    .achievements-grid { grid-template-columns: repeat(2, 1fr); }
+    .blog-grid { grid-template-columns: 1fr; }
+    .blog-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+    .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+    .cta-inner { padding: 48px 24px; }
+    .newsletter-inner { flex-direction: column; align-items: flex-start; }
+    .newsletter-form { max-width: 100%; width: 100%; }
+    section { padding: 56px 0; }
+    .about-stats { grid-template-columns: 1fr 1fr; }
+    .services-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 480px) {
+    .achievements-grid { grid-template-columns: 1fr; }
+    .hero-actions { flex-direction: column; }
+    .hero-btn-main, .hero-btn-sec { width: 100%; text-align: center; justify-content: center; }
+    .footer-socials { gap: 8px; }
+  }
+
+  /* ========== BLOG SWIPER ========== */
+  .blog-swiper-wrap { position: relative; padding-bottom: 50px; }
+  .blog-swiper { overflow: hidden; }
+  .swiper-slide .blog-card { height: 100%; }
+  .blog-swiper-nav {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 28px;
+  }
+  .swiper-btn-prev, .swiper-btn-next {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    border: 2px solid var(--indigo);
+    background: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: var(--indigo);
+    transition: all 0.3s;
+    flex-shrink: 0;
+  }
+  .swiper-btn-prev:hover, .swiper-btn-next:hover {
+    background: var(--indigo);
+    color: #fff;
+  }
+  .blog-swiper-pagination {
+    flex: 1;
+    text-align: center;
+  }
+  .blog-swiper-pagination .swiper-pagination-bullet {
+    width: 8px; height: 8px;
+    background: #ccc;
+    opacity: 1;
+    margin: 0 4px;
+    border-radius: 4px;
+    transition: all 0.3s;
+  }
+  .blog-swiper-pagination .swiper-pagination-bullet-active {
+    background: var(--indigo);
+    width: 24px;
+  }
+
+  /* ========== CHAT WIDGET ========== */
+  .chat-fab {
+    position: fixed;
+    bottom: 20px;
+    left: 30px;
+    z-index: 999;
+    width: 50px; height: 50px;
+    background: #4A90D9;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(74,144,217,0.5);
+    transition: all 0.3s;
+    border: none;
+  }
+  .chat-fab:hover { transform: scale(1.1); box-shadow: 0 6px 28px rgba(74,144,217,0.65); }
+  .chat-fab svg { width: 24px; height: 24px; fill: #fff; }
+
+  .chat-widget {
+    position: fixed;
+    bottom: 70px;
+    left: 30px;
+    z-index: 1000;
+    width: 320px;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+    transform: scale(0.8) translateY(20px);
+    transform-origin: bottom left;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.35s cubic-bezier(0.34,1.56,0.64,1);
+    background: #f5f5f5;
+  }
+  .chat-widget.open {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+    pointer-events: all;
+  }
+  .chat-widget-header {
+    background: linear-gradient(135deg, #4A90D9, #5DA0E8);
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    direction: rtl;
+  }
+  .chat-widget-header-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .chat-widget-logo {
+    width: 38px; height: 38px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 900;
+    color: #fff;
+    border: 2px solid rgba(255,255,255,0.4);
+  }
+  .chat-widget-header h4 {
+    font-size: 14px;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 2px;
+  }
+  .chat-widget-header p {
+    font-size: 11px;
+    color: rgba(255,255,255,0.8);
+  }
+  .chat-widget-close {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 4px;
+    line-height: 1;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+  }
+  .chat-widget-close:hover { opacity: 1; }
+
+  .chat-widget-body {
+    background: #fff;
+    padding: 20px;
+    direction: ltr;
+  }
+  .chat-field {
+    margin-bottom: 14px;
+  }
+  .chat-field label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 6px;
+    font-family: 'Cairo', sans-serif;
+  }
+  .chat-field input {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1.5px solid #e0e0e0;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 13px;
+    outline: none;
+    transition: border-color 0.3s;
+    background: #fafafa;
+    color: #333;
+  }
+  .chat-field input:focus { border-color: #4A90D9; background: #fff; }
+  .chat-widget-submit {
+    width: 100%;
+    background: #4A90D9;
+    color: #fff;
+    border: none;
+    padding: 12px;
+    border-radius: 10px;
+    font-family: 'Cairo', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-top: 6px;
+    direction: rtl;
+  }
+  .chat-widget-submit:hover {
+    background: #3578c5;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(74,144,217,0.4);
+  }
+  .chat-widget-footer {
+    background: #fff;
+    border-top: 1px solid #eee;
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .chat-widget-footer input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-family: inherit;
+    font-size: 13px;
+    color: #aaa;
+    background: none;
+  }
+  .chat-widget-footer-icons {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+  .chat-widget-footer-icons svg {
+    width: 18px; height: 18px;
+    fill: #aaa;
+    cursor: pointer;
+    transition: fill 0.2s;
+  }
+  .chat-widget-footer-icons svg:hover { fill: #4A90D9; }
+  .chat-widget-footer-icons .send-icon { fill: #4A90D9; }
+
+  /* ========== LANGUAGE ========== */
+  body.lang-en { direction: ltr; font-family: 'Cairo', sans-serif; }
+  body.lang-en .section-label::before { margin-left: 0; margin-right: 0; }
+  body.lang-en .footer-links a::before { content: '→'; }
+  body.lang-en .branch-card:hover, body.lang-en .branch-card.active { transform: translateX(4px); }
+  body.lang-en .nav-links { direction: ltr; }
+  .swip{
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 10px;
+    /* justify-content: flex-end; */
+  }
+  /* ========== SCROLL TO TOP ========== */
+.scroll-top-btn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px; /* حطناه يمين عشان الواتس والشات شمال */
+  z-index: 999;
+  width: 45px;
+  height: 45px;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(0, 149, 211, 0.4);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: all 0.3s ease;
+}
+
+.scroll-top-btn.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.scroll-top-btn:hover {
+  background: var(--indigo);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(27, 58, 107, 0.5);
+}
+
+/* تعديل مكانه في الموبايل لو حبيت */
+@media (max-width: 768px) {
+  .scroll-top-btn {
+    bottom: 20px;
+    right: 20px;
+  }
+}
+</style>
+</head>
+<body>
+<button id="scrollTopBtn" class="scroll-top-btn" aria-label="Scroll to top">
+  <i class="fa-solid fa-arrow-up"></i>
+</button>
+<!-- ===== NAVBAR ===== -->
+<header class="navbar" id="navbar">
+  <div class="nav-inner">
+  <div class="nav-logo">
+  <a href="#">
+    <img id="mainLogo" src="images/logoAr.png" alt="عائن">
+  </a>
+</div>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="#" class="active">الرئيسية</a></li>
+        <li><a href="#about">من نحن</a></li>
+        <li><a href="#services">خدماتنا</a></li>
+        <li><a href="#partners">شركاءنا</a></li>
+        <li><a href="#blog">المدونة</a></li>
+        <li><a href="#contact">تواصل معنا</a></li>
+      </ul>
+    </nav>
+    <div class="nav-actions">
+      <a href="#contact" class="btn-primary">اطلب تقييم</a>
+    </div>
+<div style="display: flex; align-items: center; gap: 16px;">
+      <button class="lang-btn" id="langBtn" onclick="toggleLang()">EN</button>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu-close-area">اضغط للإغلاق</div>
+  <ul class="mobile-menu-links">
+    <li><a href="#" onclick="closeMenu()">الرئيسية</a></li>
+    <li><a href="#about" onclick="closeMenu()">من نحن</a></li>
+    <li><a href="#services" onclick="closeMenu()">خدماتنا</a></li>
+    <li><a href="#partners" onclick="closeMenu()">شركاءنا</a></li>
+    <li><a href="#blog" onclick="closeMenu()">المدونة</a></li>
+    <li><a href="#contact" onclick="closeMenu()">تواصل معنا</a></li>
+  </ul>
+  <div class="mobile-menu-btn">
+    <a href="#contact" class="btn-primary" style="font-size:16px;padding:14px 32px;" onclick="closeMenu()">اطلب تقييم الآن</a>
+  </div>
+</div>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-particles" id="particles"></div>
+
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="hero-badge-dot"></span>
+      معتمدون من الهيئة السعودية للمقيّمين
+    </div>
+    <h1 class="hero-title">
+      نُقيّم اختيارك<br>
+      <span>لتتخذ قرارك!</span>
+    </h1>
+    <p class="hero-sub">نُؤمن بما وراء الأرقام، نبحث بعمق عن العوامل المؤثرة والدلائل والمُدخلات التي ترفع القيمة أو تخفضها في كل تقييم عقاري، ونقدم لك تقريرًا نزيهًا بكل شفافية.</p>
+    <div class="hero-actions">
+      <a href="#about" class="hero-btn-main">اعرف المزيد</a>
+      <a href="#contact" class="hero-btn-sec">قيّم الآن ←</a>
+    </div>
+  </div>
+
+  <div class="hero-scroll-hint">
+    <div class="scroll-dot">
+      <div class="scroll-dot-inner"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ABOUT ===== -->
+<section class="about-section" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-img-wrap reveal from-left">
+        <img
+          src="images/Businees.webp"
+          alt="عائن للتقييم"
+          onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTQwIiBoZWlnaHQ9IjQyMCIgdmlld0JveD0iMCAwIDU0MCA0MjAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjU0MCIgaGVpZ2h0PSI0MjAiIHJ4PSIyMCIgZmlsbD0iI0YwRjZGQSIvPjxyZWN0IHg9IjYwIiB5PSI4MCIgd2lkdGg9IjQyMCIgaGVpZ2h0PSIyNjAiIHJ4PSIxNiIgZmlsbD0iI0UyRUVGNSIvPjxyZWN0IHg9IjgwIiB5PSIxMTAiIHdpZHRoPSIzODAiIGhlaWdodD0iMjAwIiByeD0iMTIiIGZpbGw9IiNDNERCRUQiLz48Y2lyY2xlIGN4PSIyNzAiIGN5PSIyMTAiIHI9IjQ4IiBmaWxsPSIjMEI5NUQzIi8+PGNpcmNsZSBjeD0iMjcwIiBjeT0iMjEwIiByPSIzMCIgZmlsbD0id2hpdGUiLz48L3N2Zz4='"
+          style="width:100%;border-radius:20px;box-shadow:0 20px 60px rgba(0,0,0,0.12);"
+        >
+        <div class="about-img-badge">
+          <span class="num">10+</span>
+          <span class="label">سنوات من الخبرة</span>
+        </div>
+      </div>
+      <div class="about-text reveal from-right">
+        <div class="section-label">من نحن</div>
+        <h2 class="section-title">تعرّف على عائن</h2>
+        <p>شركة عائن للتقييم العقاري رائدة ومعتمدة من الهيئة السعودية للمقيّمين المعتمدين. منذ انطلاقتنا في 2020 نستدل بخبرات قادتنا الممتدة لأكثر من 10 أعوام من العمل بأحدث المعايير العالمية في التقييم العقاري.</p>
+        <p>نُقدم تقارير دقيقة وموثوقة تُمكّن المستثمرين والأفراد من اتخاذ قرارات صائبة في السوق العقاري السعودي المتنامي.</p>
+        <div class="about-stats">
+          <div class="stat-box reveal from-scale reveal-delay-1">
+            <span class="val">15K+</span>
+            <span class="stat-label">عقار مُقيّم</span>
+          </div>
+          <div class="stat-box reveal from-scale reveal-delay-2">
+            <span class="val">27B</span>
+            <span class="stat-label">ريال قيمة العقارات</span>
+          </div>
+          <div class="stat-box reveal from-scale reveal-delay-3">
+            <span class="val">47K</span>
+            <span class="stat-label">ساعة خبرة</span>
+          </div>
+          <div class="stat-box reveal from-scale reveal-delay-4">
+            <span class="val">3</span>
+            <span class="stat-label">فروع في المملكة</span>
+          </div>
+        </div>
+        <div style="margin-top:10px;">
+          <a href="#contact" class="btn-primary">ابدأ معنا</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SERVICES ===== -->
+<section class="services-section" id="services">
+  <div class="container">
+    <div class="services-header">
+      <div class="section-label" style="justify-content:center">خدماتنا</div>
+      <h2 class="section-title">نُقيم لمختلف الأغراض</h2>
+      <p class="section-sub" style="margin: 0 auto;">للأفراد وللمؤسسات، نُقدم تقييمات دقيقة ومعتمدة لكل أنواع العقارات</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal from-bottom reveal-delay-1">
+        <div class="service-icon">📊</div>
+        <div class="service-title">دراسة الجدوى</div>
+        <p class="service-desc">قرر بثقة! تُساعد دراسة الجدوى المستثمرين على تقييم الإمكانات الربحية لمشروع عقاري قبل البدء فيه.</p>
+      </div>
+      <div class="service-card featured reveal from-bottom reveal-delay-2">
+        <div class="service-icon">💰</div>
+        <div class="service-title">التقييم لغرض الميزانية</div>
+        <p class="service-desc">حدد تكاليفك بدون مفاجآت! يُساعد التقييم لغرض الميزانية أصحاب العقارات على تحديد ميزانية مشروعهم العقاري بدقة.</p>
+      </div>
+      <div class="service-card reveal from-bottom reveal-delay-3">
+        <div class="service-icon">🗺️</div>
+        <div class="service-title">التقييم للبيع على الخارطة</div>
+        <p class="service-desc">قيّم قبل البناء! يُساعد التقييم المطورين العقاريين على تحديد سعر البيع المناسب للعقار قبل بنائه.</p>
+      </div>
+      <div class="service-card reveal from-bottom reveal-delay-4">
+        <div class="service-icon">🏢</div>
+        <div class="service-title">التقييم التجاري</div>
+        <p class="service-desc">الإيرادات سهل تتوقعها! يُساعد التقييم المستثمرين على الحصول على معلومات قيّمة حول الفرص الربحية للعقار.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PARTNERS ===== -->
+<section class="partners-section" id="partners">
+  <div class="container">
+    <div class="partners-header reveal from-bottom">
+      <div class="section-label" style="justify-content:center">شركاؤنا</div>
+      <h2 class="section-title">نالت خدماتنا ثقة أكبر العلامات التجارية</h2>
+      <p class="section-sub">بالمملكة العربية السعودية</p>
+    </div>
+  </div>
+  <div class="partners-track-wrap reveal from-scale">
+    <div class="partners-track" id="partnersTrack">
+      <!-- 12 Partner logos from the site -->
+      <div class="partner-logo"><img src="images/slide1.webp" alt="Partner 1" onerror="this.parentElement.innerHTML='<span style=\'font-weight:800;color:#aaa;font-size:13px\'>شريك ١</span>'"></div>
+      <div class="partner-logo"><img src="images/slide2.webp" alt="Partner 2" onerror="this.parentElement.innerHTML='<span style=\'font-weight:800;color:#aaa;font-size:13px\'>شريك ٢</span>'"></div>
+      <div class="partner-logo"><img src="images/slide3.webp" alt="Partner 3" onerror="this.parentElement.innerHTML='<span style=\'font-weight:800;color:#aaa;font-size:13px\'>شريك ٣</span>'"></div>
+      <div class="partner-logo"><img src="images/slide4.webp" alt="Partner 4" onerror="this.parentElement.innerHTML='<span style=\'font-weight:800;color:#aaa;font-size:13px\'>شريك ٤</span>'"></div>
+      <div class="partner-logo"><img src="images/slide5.webp" alt="Partner 5" onerror="this.parentElement.innerHTML='<span style=\'font-weight:800;color:#aaa;font-size:13px\'>شريك ٥</span>'"></div>
+      <div class="partner-logo"><img src="images/slide6.webp" alt="Partner 6" onerror="this.parentElement.innerHTML='<span style=\'font-weight:800;color:#aaa;font-size:13px\'>شريك ٦</span>'"></div>
+      <div class="partner-logo"><img src="images/slide7.webp" alt="Partner 7" onerror="this.parentElement.innerHTML='<span style=\'font-weight:800;color:#aaa;font-size:13px\'>شريك ٧</span>'"></div>
+      <div class="partner-logo"><img src="images/slide8.webp" alt="Partner 8" onerror="this.parentElement.innerHTML='<span style=\'font-weight:800;color:#aaa;font-size:13px\'>شريك ٨</span>'"></div>
+      <div class="partner-logo"><img src="images/slide9.webp" alt="Partner 9" onerror="this.parentElement.innerHTML='<span style=\'font-weight:800;color:#aaa;font-size:13px\'>شريك ٩</span>'"></div>
+      <div class="partner-logo"><img src="images/slide10.webp" alt="Partner 10" onerror="this.parentElement.innerHTML='<span style=\'font-weight:800;color:#aaa;font-size:13px\'>شريك ١٠</span>'"></div>
+      <div class="partner-logo"><img src="images/slide11.webp" alt="Partner 11" onerror="this.parentElement.innerHTML='<span style=\'font-weight:800;color:#aaa;font-size:13px\'>شريك ١١</span>'"></div>
+      <div class="partner-logo"><img src="images/slide12.webp" alt="Partner 12" onerror="this.parentElement.innerHTML='<span style=\'font-weight:800;color:#aaa;font-size:13px\'>شريك ١٢</span>'"></div>
+      <!-- Duplicate for seamless loop -->
+   <div class="partner-logo"><img src="images/slide1.webp" alt="Partner 1" onerror="this.parentElement.innerHTML='<span style=\'font-weight:800;color:#aaa;font-size:13px\'>شريك ١</span>'"></div>
+      <div class="partner-logo"><img src="images/slide2.webp" alt="Partner 2" onerror="this.parentElement.innerHTML='<span style=\'font-weight:800;color:#aaa;font-size:13px\'>شريك ٢</span>'"></div>
+      <div class="partner-logo"><img src="images/slide3.webp" alt="Partner 3" onerror="this.parentElement.innerHTML='<span style=\'font-weight:800;color:#aaa;font-size:13px\'>شريك ٣</span>'"></div>
+      <div class="partner-logo"><img src="images/slide4.webp" alt="Partner 4" onerror="this.parentElement.innerHTML='<span style=\'font-weight:800;color:#aaa;font-size:13px\'>شريك ٤</span>'"></div>
+      <div class="partner-logo"><img src="images/slide5.webp" alt="Partner 5" onerror="this.parentElement.innerHTML='<span style=\'font-weight:800;color:#aaa;font-size:13px\'>شريك ٥</span>'"></div>
+      <div class="partner-logo"><img src="images/slide6.webp" alt="Partner 6" onerror="this.parentElement.innerHTML='<span style=\'font-weight:800;color:#aaa;font-size:13px\'>شريك ٦</span>'"></div>
+      <div class="partner-logo"><img src="images/slide7.webp" alt="Partner 7" onerror="this.parentElement.innerHTML='<span style=\'font-weight:800;color:#aaa;font-size:13px\'>شريك ٧</span>'"></div>
+      <div class="partner-logo"><img src="images/slide8.webp" alt="Partner 8" onerror="this.parentElement.innerHTML='<span style=\'font-weight:800;color:#aaa;font-size:13px\'>شريك ٨</span>'"></div>
+      <div class="partner-logo"><img src="images/slide9.webp" alt="Partner 9" onerror="this.parentElement.innerHTML='<span style=\'font-weight:800;color:#aaa;font-size:13px\'>شريك ٩</span>'"></div>
+      <div class="partner-logo"><img src="images/slide10.webp" alt="Partner 10" onerror="this.parentElement.innerHTML='<span style=\'font-weight:800;color:#aaa;font-size:13px\'>شريك ١٠</span>'"></div>
+      <div class="partner-logo"><img src="images/slide11.webp" alt="Partner 11" onerror="this.parentElement.innerHTML='<span style=\'font-weight:800;color:#aaa;font-size:13px\'>شريك ١١</span>'"></div>
+      <div class="partner-logo"><img src="images/slide12.webp" alt="Partner 12" onerror="this.parentElement.innerHTML='<span style=\'font-weight:800;color:#aaa;font-size:13px\'>شريك ١٢</span>'"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ACHIEVEMENTS ===== -->
+<section class="achievements-section">
+  <div class="container">
+    <div class="achievements-header">
+      <div class="section-label">إنجازاتنا</div>
+      <h2 class="section-title">إنجازات عائن</h2>
+      <p class="section-sub">بخبرتنا ورؤيتنا، حققنا هذا النمو المذهل في 4 سنوات فقط!</p>
+    </div>
+    <div class="achievements-grid">
+      <div class="achievement-card reveal from-bottom reveal-delay-1">
+        <span class="achievement-icon">
+            <img src="images/ach1.png" alt="">
+        </span>
+        <span class="achievement-value"><span class="counter-val" data-target="15000">0</span>+</span>
+        <span class="achievement-label">عقار مُقيَّم</span>
+      </div>
+      <div class="achievement-card reveal from-bottom reveal-delay-2">
+        <span class="achievement-icon"><img src="images/ach2.png" alt=""></span>
+        <span class="achievement-value"><span class="counter-val" data-target="300">0</span>M</span>
+        <span class="achievement-label">مليون متر مساحات العقارات</span>
+      </div>
+      <div class="achievement-card reveal from-bottom reveal-delay-3">
+        <span class="achievement-icon"><img src="images/ach3.png" alt=""></span>
+        <span class="achievement-value"><span class="counter-val" data-target="27">0</span>B</span>
+        <span class="achievement-label">مليار ريال قيمة العقارات</span>
+      </div>
+      <div class="achievement-card reveal from-bottom reveal-delay-4">
+        <span class="achievement-icon"><img src="images/ach4.png" alt=""></span>
+        <span class="achievement-value"><span class="counter-val" data-target="47000">0</span>+</span>
+        <span class="achievement-label">ساعة خبرة</span>
+      </div>
+      <div class="achievement-card reveal from-bottom reveal-delay-5">
+        <span class="achievement-icon"><img src="images/ach5.png" alt=""></span>
+        <span class="achievement-value"><span class="counter-val" data-target="4">0</span></span>
+        <span class="achievement-label">سنوات من الخبرة المتميزة</span>
+      </div>
+      <div class="achievement-card reveal from-bottom" style="transition-delay:0.6s">
+        <span class="achievement-icon"><img src="images/ach1.png" alt=""></span>
+        <span class="achievement-value"><span class="counter-val" data-target="3">0</span></span>
+        <span class="achievement-label">فروع في المملكة العربية السعودية</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== BRANCHES ===== -->
+<section class="branches-section" id="branches">
+  <div class="container">
+    <div class="branches-grid">
+      <div class="branches-info">
+        <div class="reveal from-right">
+          <div class="section-label">فروعنا</div>
+          <h2 class="section-title">الأقرب إليك</h2>
+          <p class="section-sub">لدينا فروع في أهم مدن المملكة لنكون دائمًا في خدمتك</p>
+        </div>
+        <div class="branch-card active reveal from-right reveal-delay-1">
+          <div class="branch-icon">📍</div>
+          <div>
+            <div class="branch-name">الرياض</div>
+            <div class="branch-address">6375، قيصر بن العادل، 2566 حي الروابي، الرياض</div>
+          </div>
+        </div>
+        <div class="branch-card reveal from-right reveal-delay-2">
+          <div class="branch-icon">🏙️</div>
+          <div>
+            <div class="branch-name">تبوك</div>
+            <div class="branch-address">47919، شارع خديجة بنت خويلد، الصفا</div>
+          </div>
+        </div>
+        <div class="branch-card reveal from-right reveal-delay-3">
+          <div class="branch-icon">🌆</div>
+          <div>
+            <div class="branch-name">خميس مشيط</div>
+            <div class="branch-address">2592 طريق صلاح الدين، عتود، خميس مشيط 62431، المملكة العربية السعودية</div>
+          </div>
+        </div>
+      </div>
+      <div class="map-container reveal from-left">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3625.2914317971613!2d46.78115919322189!3d24.682506583615123!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e2efd2e0aed380b%3A0xba2770d0b46956a7!2z2LTYsdmD2Kkg2LnYp9im2YYg2YTZhNiq2YLZitmK2YUg2KfZhNi52YLYp9ix2Yo!5e0!3m2!1sar!2seg!4v1728514584965!5m2!1sar!2seg"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== BLOG ===== -->
+<section class="blog-section" id="blog">
+  <div class="container">
+    <div class="blog-header">
+      <div class="reveal from-bottom">
+        <div class="section-label" data-ar="المدونة" data-en="Blog">المدونة</div>
+        <h2 class="section-title" data-ar="كل ما تريد معرفته" data-en="Everything You Need to Know">كل ما تريد معرفته</h2>
+        <p class="section-sub" data-ar="عن التقييم العقاري وتحديثاته وأخبار السوق" data-en="About real estate valuation, updates, and market news">عن التقييم العقاري وتحديثاته وأخبار السوق</p>
+      </div>
+      <div class="reveal from-bottom reveal-delay-2">
+        <a href="#" class="btn-outline" data-ar="عرض المزيد ←" data-en="View More →">عرض المزيد ←</a>
+      </div>
+    </div>
+
+    <div class="blog-swiper-wrap reveal from-bottom">
+      <div class="swiper blog-swiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <div class="blog-card">
+              <div class="blog-img">
+                <img src="https://cms.aain.sa/wp-content/uploads/2026/02/كيف-يتم-التقييم-العقاري-لأغراض-التأمين؟-4.webp" alt="مقال" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDQwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjQwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9IiNFMkVFRjUiLz48cmVjdCB4PSI3MCIgeT0iNTAiIHdpZHRoPSIyNjAiIGhlaWdodD0iMTAwIiByeD0iMTIiIGZpbGw9IiNDNERCRUQiLz48L3N2Zz4='">
+                <span class="blog-category" data-ar="تقييم عقاري" data-en="Real Estate">تقييم عقاري</span>
+              </div>
+              <div class="blog-body">
+                <div class="blog-title" data-ar="كيف يتم التقييم العقاري لأغراض التأمين؟" data-en="How is Real Estate Valuation Done for Insurance Purposes?">كيف يتم التقييم العقاري لأغراض التأمين؟</div>
+                <div class="blog-excerpt" data-ar="لماذا يعتبر التقييم العقاري خطوة مهمة عند التأمين؟ تقييم العقارات إجراء مهم ليس فقط عند البيع والشراء، بل في التمويل العقاري والاستثمار." data-en="Why is real estate valuation an important step when insuring? Property valuation is an important procedure not only when buying and selling, but also in real estate financing and investment.">لماذا يعتبر التقييم العقاري خطوة مهمة عند التأمين؟ تقييم العقارات إجراء مهم ليس فقط عند البيع والشراء، بل في التمويل العقاري والاستثمار.</div>
+              </div>
+              <div class="blog-footer">
+                <span class="blog-date" data-ar="فبراير 2026" data-en="February 2026">فبراير 2026</span>
+                <a href="#" class="blog-read" data-ar="اقرأ المزيد ←" data-en="Read More →">اقرأ المزيد ←</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="swiper-slide">
+            <div class="blog-card">
+              <div class="blog-img">
+                <img src="https://cms.aain.sa/wp-content/uploads/2026/02/هل-تؤثر-أسعار-مواد-البناء-على-السوق-العقاري-السعودي؟-5.webp" alt="مقال" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDQwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjQwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9IiNFMkVFRjUiLz48cmVjdCB4PSI3MCIgeT0iNTAiIHdpZHRoPSIyNjAiIGhlaWdodD0iMTAwIiByeD0iMTIiIGZpbGw9IiNDNERCRUQiLz48L3N2Zz4='">
+                <span class="blog-category" data-ar="سوق العقار" data-en="Real Estate Market">سوق العقار</span>
+              </div>
+              <div class="blog-body">
+                <div class="blog-title" data-ar="هل تؤثر أسعار مواد البناء على السوق العقاري السعودي؟" data-en="Do Building Material Prices Affect the Saudi Real Estate Market?">هل تؤثر أسعار مواد البناء على السوق العقاري السعودي؟</div>
+                <div class="blog-excerpt" data-ar="هل يمكن أن تكون تقلبات أسعار مواد البناء هي المحرك الخفي وراء ارتفاع أسعار العقارات في السعودية؟" data-en="Could fluctuations in building material prices be the hidden driver behind rising property prices in Saudi Arabia?">هل يمكن أن تكون تقلبات أسعار مواد البناء هي المحرك الخفي وراء ارتفاع أسعار العقارات في السعودية؟</div>
+              </div>
+              <div class="blog-footer">
+                <span class="blog-date" data-ar="فبراير 2026" data-en="February 2026">فبراير 2026</span>
+                <a href="#" class="blog-read" data-ar="اقرأ المزيد ←" data-en="Read More →">اقرأ المزيد ←</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="swiper-slide">
+            <div class="blog-card">
+              <div class="blog-img">
+                <img src="https://cms.aain.sa/wp-content/uploads/2026/01/لماذا-يُعد-الاستثمار-العقاري-في-السعودية-من-أفضل-الفرص-الاستثمارية؟.webp" alt="مقال" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDQwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjQwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9IiNFMkVFRjUiLz48cmVjdCB4PSI3MCIgeT0iNTAiIHdpZHRoPSIyNjAiIGhlaWdodD0iMTAwIiByeD0iMTIiIGZpbGw9IiNDNERCRUQiLz48L3N2Zz4='">
+                <span class="blog-category" data-ar="تقييم عقاري" data-en="Valuation">تقييم عقاري</span>
+              </div>
+              <div class="blog-body">
+                <div class="blog-title" data-ar="كيف تؤثر أخلاقيات المقيم العقاري على جودة التقييم؟" data-en="How Do Real Estate Appraiser Ethics Affect Valuation Quality?">كيف تؤثر أخلاقيات المقيم العقاري على جودة التقييم؟</div>
+                <div class="blog-excerpt" data-ar="هل يمكن أن يكون تقرير التقييم العقاري دقيقًا وموثوقًا إذا تجاهل المقيم العقاري المبادئ الأخلاقية؟" data-en="Can a real estate valuation report be accurate and reliable if the appraiser ignores ethical principles?">هل يمكن أن يكون تقرير التقييم العقاري دقيقًا وموثوقًا إذا تجاهل المقيم العقاري المبادئ الأخلاقية؟</div>
+              </div>
+              <div class="blog-footer">
+                <span class="blog-date" data-ar="يناير 2026" data-en="January 2026">يناير 2026</span>
+                <a href="#" class="blog-read" data-ar="اقرأ المزيد ←" data-en="Read More →">اقرأ المزيد ←</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="swiper-slide">
+            <div class="blog-card">
+              <div class="blog-img">
+                <img src="https://cms.aain.sa/wp-content/uploads/2026/01/لماذا-يُعد-مستند-صك-الملكية-مهمًا-في-التقييم-العقاري؟-5.webp" alt="مقال" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDQwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjQwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9IiNFMkVFRjUiLz48cmVjdCB4PSI3MCIgeT0iNTAiIHdpZHRoPSIyNjAiIGhlaWdodD0iMTAwIiByeD0iMTIiIGZpbGw9IiNDNERCRUQiLz48L3N2Zz4='">
+                <span class="blog-category" data-ar="تقييم عقاري" data-en="Real Estate">تقييم عقاري</span>
+              </div>
+              <div class="blog-body">
+                <div class="blog-title" data-ar="لماذا يُعد مستند صك الملكية مهمًا في التقييم العقاري؟" data-en="Why Is the Title Deed Document Important in Real Estate Valuation?">لماذا يُعد مستند صك الملكية مهمًا في التقييم العقاري؟</div>
+                <div class="blog-excerpt" data-ar="هل فكرت يوما لماذا يطلب المقيم العقاري صك ملكية العقار قبل بدأ عملية التقييم؟ في الحقيقة يعتمد التقييم العقاري على..." data-en="Have you ever wondered why a real estate appraiser requests the property title deed before starting the valuation process? In fact, real estate valuation depends on...">هل فكرت يوما لماذا يطلب المقيم العقاري صك ملكية العقار قبل بدأ عملية التقييم؟ في الحقيقة يعتمد التقييم العقاري على...</div>
+              </div>
+              <div class="blog-footer">
+                <span class="blog-date" data-ar="يناير 2026" data-en="January 2026">يناير 2026</span>
+                <a href="#" class="blog-read" data-ar="اقرأ المزيد ←" data-en="Read More →">اقرأ المزيد ←</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="swip">
+      <button class="swiper-btn-prev" id="blogPrev">›</button>
+      <button class="swiper-btn-next" id="blogNext">‹</button>
+      </div>
+      <div class="blog-swiper-nav">
+        <div class="blog-swiper-pagination"></div>
+    </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-inner reveal from-scale">
+      <h2 class="cta-title">ابدأ رحلتك معنا اليوم</h2>
+      <p class="cta-sub">احصل على تقييم عقاري دقيق وموثوق من خبراء معتمدين. نحن هنا لمساعدتك في اتخاذ القرار الصح.</p>
+      <a href="#contact" class="cta-btn">
+        طلب عرض أسعار
+        <span class="cta-arrow">←</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== NEWSLETTER ===== -->
+<div class="newsletter-strip" id="contact">
+  <div class="container">
+    <div class="newsletter-inner">
+      <div class="newsletter-text">
+        <h3>اشترك في نشرتنا البريدية</h3>
+        <p>احصل على آخر أخبار السوق العقاري والتقييم</p>
+      </div>
+      <form class="newsletter-form" onsubmit="handleNewsletter(event)">
+        <input type="email" placeholder="أدخل بريدك الإلكتروني" required>
+        <button type="submit">اشترك</button>
+      </form>
+      
+    </div>
+  </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand reveal from-right">
+        <img src="/_next/static/media/logo.672c5ee1.png" alt="عائن"
+          onerror="this.style.display='none'; this.parentElement.insertAdjacentHTML('afterbegin','<div style=\'font-size:26px;font-weight:900;color:var(--indigo);margin-bottom:16px\'>عـائـن</div>')">
+        <p>شركة عائن للتقييم، متخصصة في التقييم العقاري في السعودية.</p>
+  <div class="footer-socials">
+  <a href="https://twitter.com/aainvaluation" class="social-btn" target="_blank" aria-label="Twitter">
+    <i class="fa-brands fa-x-twitter"></i>
+  </a>
+
+  <a href="https://www.linkedin.com/company/aainvaluationcompany/" class="social-btn" target="_blank" aria-label="LinkedIn">
+    <i class="fa-brands fa-linkedin-in"></i>
+  </a>
+
+  <a href="https://www.instagram.com/aainvaluation" class="social-btn" target="_blank" aria-label="Instagram">
+    <i class="fa-brands fa-instagram"></i>
+  </a>
+
+  <a href="https://www.tiktok.com/@aainvaluation" class="social-btn" target="_blank" aria-label="TikTok">
+    <i class="fa-brands fa-tiktok"></i>
+  </a>
+</div>
+      </div>
+      <div class="reveal from-bottom reveal-delay-1">
+        <div class="footer-col-title">روابط سريعة</div>
+        <ul class="footer-links">
+          <li><a href="#about">من نحن؟</a></li>
+          <li><a href="#services">خدماتنا</a></li>
+          <li><a href="#partners">شركاءنا</a></li>
+          <li><a href="#contact">اطلب تقييم</a></li>
+          <li><a href="#blog">المدونة</a></li>
+        </ul>
+      </div>
+      <div class="reveal from-bottom reveal-delay-2">
+        <div class="footer-col-title">خدماتنا</div>
+        <ul class="footer-links">
+          <li><a href="#">دراسة الجدوى</a></li>
+          <li><a href="#">التقييم للميزانية</a></li>
+          <li><a href="#">البيع على الخارطة</a></li>
+          <li><a href="#">التقييم التجاري</a></li>
+          <li><a href="#">تقييم الأراضي</a></li>
+        </ul>
+      </div>
+      <div class="reveal from-bottom reveal-delay-3">
+        <div class="footer-col-title">تواصل معنا</div>
+        <ul class="footer-contact">
+          <li><span>📞</span><span>920033939</span></li>
+          <li><span>🏢</span><span>966592077747</span></li>
+          <li><span>✉️</span><span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="caa3a4aca58aababa3a4e7a9a5e4a9a5a7">[email&#160;]</a></span></li>
+          <li><span>📍</span><span>الرياض، المملكة العربية السعودية</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2024 عائن. جميع الحقوق محفوظة</p>
+      <div style="display:flex;gap:16px;">
+        <a href="#">سياسة الخصوصية</a>
+        <a href="#">الشروط والأحكام</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ===== WHATSAPP ===== -->
+<a href="https://wa.me/966920033939" class="whatsapp-fab" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+  <svg viewBox="0 0 64 64" width="32" height="32">
+    <path d="m42.32286,33.93287c-0.5178,-0.2589-3.04726,-1.49644-3.52105,-1.66732c-0.4712,-0.17346-0.81554,-0.2589-1.15987,0.2589c-0.34175,0.51004-1.33075,1.66474-1.63108,2.00648c-0.30032,0.33658-0.60064,0.36247-1.11327,0.12945c-0.5178,-0.2589-2.17994,-0.80259-4.14759,-2.56312c-1.53269,-1.37217-2.56312,-3.05503-2.86603,-3.57283c-0.30033,-0.5178-0.03366,-0.80259,0.22524,-1.06149c0.23301,-0.23301,0.5178,-0.59547,0.7767,-0.90616c0.25372,-0.31068,0.33657,-0.5178,0.51262,-0.85437c0.17088,-0.36246,0.08544,-0.64725-0.04402,-0.90615c-0.12945,-0.2589-1.15987,-2.79613-1.58964,-3.80584c-0.41424,-1.00971-0.84142,-0.88027-1.15987,-0.88027c-0.29773,-0.02588-0.64208,-0.02588-0.98382,-0.02588c-0.34693,0-0.90616,0.12945-1.37736,0.62136c-0.4712,0.5178-1.80194,1.76053-1.80194,4.27186c0,2.51134,1.84596,4.945,2.10227,5.30747c0.2589,0.33657,3.63497,5.51458,8.80262,7.74113c1.23237,0.5178,2.1903,0.82848,2.94111,1.08738c1.23237,0.38836,2.35599,0.33657,3.24402,0.20712c0.99159,-0.15534,3.04985,-1.24272,3.47963,-2.45956c0.44013,-1.21683,0.44013,-2.22654,0.31068,-2.45955c-0.12945,-0.23301-0.46601,-0.36247-0.98382,-0.59548m-9.40068,12.84407l-0.02589,0c-3.05503,0-6.08417,-0.82849-8.72495,-2.38189l-0.62136,-0.37023l-6.47252,1.68286l1.73463,-6.29129l-0.41424,-0.64725c-1.70875,-2.71846-2.6149,-5.85116-2.6149,-9.07706c0,-9.39809,7.68934,-17.06155,17.15993,-17.06155c4.58253,0,8.88029,1.78642,12.11655,5.02268c3.23625,3.21036,5.02267,7.50812,5.02267,12.06476c-0.0078,9.3981-7.69712,17.06155-17.14699,17.06155m14.58906,-31.58846c-3.93529,-3.80584-9.1133,-5.95471-14.62789,-5.95471c-11.36055,0-20.60848,9.2065-20.61625,20.52564c0,3.61684,0.94757,7.14565,2.75211,10.26282l-2.92557,10.63564l10.93337,-2.85309c3.0136,1.63108,6.4052,2.4958,9.85634,2.49839l0.01037,0c11.36574,0,20.61884,-9.2091,20.62403,-20.53082c0,-5.48093-2.14111,-10.64081-6.03239,-14.51915" fill="white"/>
+  </svg>
+</a>
+
+<!-- ===== CHAT FAB ===== -->
+<button class="chat-fab" id="chatFab" onclick="toggleChat()" aria-label="Chat">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.17L4 17.17V4h16v12z"/>
+  </svg>
+</button>
+
+<!-- ===== CHAT WIDGET ===== -->
+<div class="chat-widget" id="chatWidget">
+  <div class="chat-widget-header">
+    <div class="chat-widget-header-info">
+      <div class="chat-widget-logo">ع</div>
+      <div>
+        <h4 data-ar="فريق عائن في خدمتك" data-en="Aain Team at Your Service">فريق عائن في خدمتك</h4>
+        <p data-ar="خبراء فريقنا هنا لمساعدتك في كافة استفساراتك و طلباتك" data-en="Our expert team is here to help with all your inquiries and requests">خبراء فريقنا هنا لمساعدتك في كافة استفساراتك و طلباتك</p>
+      </div>
+    </div>
+    <button class="chat-widget-close" onclick="toggleChat()">✕</button>
+  </div>
+  <div class="chat-widget-body">
+    <div class="chat-field">
+      <label data-ar="الاسم الأول" data-en="First Name">الاسم الأول</label>
+      <input type="text" id="chatName" placeholder="">
+    </div>
+    <div class="chat-field">
+      <label data-ar="رقم الجوال" data-en="Phone Number">رقم الجوال</label>
+      <input type="tel" id="chatPhone" placeholder="">
+    </div>
+    <div class="chat-field">
+      <label data-ar="البريد الإلكتروني" data-en="Email Address">البريد الإلكتروني</label>
+      <input type="email" id="chatEmail" placeholder="">
+    </div>
+    <button class="chat-widget-submit" onclick="submitChat()" data-ar="ابدأ الآن" data-en="Start Now">ابدأ الآن</button>
+  </div>
+  <div class="chat-widget-footer">
+    <input type="text" placeholder="Type a message..." readonly>
+    <div class="chat-widget-footer-icons">
+      <svg viewBox="0 0 24 24"><path d="M16.5 6v11.5c0 2.21-1.79 4-4 4s-4-1.79-4-4V5c0-1.38 1.12-2.5 2.5-2.5s2.5 1.12 2.5 2.5v10.5c0 .55-.45 1-1 1s-1-.45-1-1V6H10v9.5c0 1.38 1.12 2.5 2.5 2.5s2.5-1.12 2.5-2.5V5c0-2.21-1.79-4-4-4S7 2.79 7 5v12.5c0 3.04 2.46 5.5 5.5 5.5s5.5-2.46 5.5-5.5V6h-1.5z"/></svg>
+      <svg class="send-icon" viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.js"></script>
+<script src="
+https://cdn.jsdelivr.net/npm/lenis@1.3.11/dist/lenis.min.js
+"></script>
+<script>
+const translations = {
+  ar: {
+    dir:'rtl',langBtn:'EN',navHome:'الرئيسية',navAbout:'من نحن',navServices:'خدماتنا',navPartners:'شركاءنا',navBlog:'المدونة',navContact:'تواصل معنا',
+    btnEval:'اطلب تقييم',heroBadge:'معتمدون من الهيئة السعودية للمقيّمين',
+    heroTitle:'نُقيّم اختيارك<br><span>لتتخذ قرارك!</span>',
+    heroSub:'نُؤمن بما وراء الأرقام، نبحث بعمق عن العوامل المؤثرة والدلائل والمُدخلات التي ترفع القيمة أو تخفضها في كل تقييم عقاري، ونقدم لك تقريرًا نزيهًا بكل شفافية.',
+    heroBtn1:'اعرف المزيد',heroBtn2:'قيّم الآن ←',
+    aboutLabel:'من نحن',aboutTitle:'تعرّف على عائن',
+    aboutP1:'شركة عائن للتقييم العقاري رائدة ومعتمدة من الهيئة السعودية للمقيّمين المعتمدين. منذ انطلاقتنا في 2020 نستدل بخبرات قادتنا الممتدة لأكثر من 10 أعوام من العمل بأحدث المعايير العالمية في التقييم العقاري.',
+    aboutP2:'نُقدم تقارير دقيقة وموثوقة تُمكّن المستثمرين والأفراد من اتخاذ قرارات صائبة في السوق العقاري السعودي المتنامي.',
+    aboutBtn:'ابدأ معنا',aboutBadge:'سنوات من الخبرة',
+    stat1:'عقار مُقيّم',stat2:'ريال قيمة العقارات',stat3:'ساعة خبرة',stat4:'فروع في المملكة',
+    servLabel:'خدماتنا',servTitle:'نُقيم لمختلف الأغراض',servSub:'للأفراد وللمؤسسات، نُقدم تقييمات دقيقة ومعتمدة لكل أنواع العقارات',
+    s1t:'دراسة الجدوى',s1d:'قرر بثقة! تُساعد دراسة الجدوى المستثمرين على تقييم الإمكانات الربحية لمشروع عقاري قبل البدء فيه.',
+    s2t:'التقييم لغرض الميزانية',s2d:'حدد تكاليفك بدون مفاجآت! يُساعد التقييم لغرض الميزانية أصحاب العقارات على تحديد ميزانية مشروعهم العقاري بدقة.',
+    s3t:'التقييم للبيع على الخارطة',s3d:'قيّم قبل البناء! يُساعد التقييم المطورين العقاريين على تحديد سعر البيع المناسب للعقار قبل بنائه.',
+    s4t:'التقييم التجاري',s4d:'الإيرادات سهل تتوقعها! يُساعد التقييم المستثمرين على الحصول على معلومات قيّمة حول الفرص الربحية للعقار.',
+    partLabel:'شركاؤنا',partTitle:'نالت خدماتنا ثقة أكبر العلامات التجارية',partSub:'بالمملكة العربية السعودية',
+    achLabel:'إنجازاتنا',achTitle:'إنجازات عائن',achSub:'بخبرتنا ورؤيتنا، حققنا هذا النمو المذهل في 4 سنوات فقط!',
+    ach1:'عقار مُقيَّم',ach2:'مليون متر مساحات العقارات',ach3:'مليار ريال قيمة العقارات',ach4:'ساعة خبرة',ach5:'سنوات من الخبرة المتميزة',ach6:'فروع في المملكة العربية السعودية',
+    brLabel:'فروعنا',brTitle:'الأقرب إليك',brSub:'لدينا فروع في أهم مدن المملكة لنكون دائمًا في خدمتك',
+    br1n:'الرياض',br1a:'6375، قيصر بن العادل، 2566 حي الروابي، الرياض',
+    br2n:'تبوك',br2a:'47919، شارع خديجة بنت خويلد، الصفا',
+    br3n:'خميس مشيط',br3a:'2592 طريق صلاح الدين، عتود، خميس مشيط 62431، المملكة العربية السعودية',
+    blogLabel:'المدونة',blogTitle:'كل ما تريد معرفته',blogSub:'عن التقييم العقاري وتحديثاته وأخبار السوق',
+    ctaTitle:'ابدأ رحلتك معنا اليوم',ctaSub:'احصل على تقييم عقاري دقيق وموثوق من خبراء معتمدين. نحن هنا لمساعدتك في اتخاذ القرار الصح.',ctaBtn:'طلب عرض أسعار',
+    nlTitle:'اشترك في نشرتنا البريدية',nlSub:'احصل على آخر أخبار السوق العقاري والتقييم',nlBtn:'اشترك',nlPlaceholder:'أدخل بريدك الإلكتروني',
+    footDesc:'شركة عائن للتقييم، متخصصة في التقييم العقاري في السعودية.',
+    fCol1:'روابط سريعة',fl1:'من نحن؟',fl2:'خدماتنا',fl3:'شركاءنا',fl4:'اطلب تقييم',fl5:'المدونة',
+    fCol2:'خدماتنا',fs1:'دراسة الجدوى',fs2:'التقييم للميزانية',fs3:'البيع على الخارطة',fs4:'التقييم التجاري',fs5:'تقييم الأراضي',
+    fCol3:'تواصل معنا',fcopy:'© 2024 عائن. جميع الحقوق محفوظة',fprivacy:'سياسة الخصوصية',fterms:'الشروط والأحكام',
+    chatHeader:'فريق عائن في خدمتك',chatSub:'خبراء فريقنا هنا لمساعدتك في كافة استفساراتك و طلباتك',
+    chatName:'الاسم الأول',chatPhone:'رقم الجوال',chatEmail:'البريد الإلكتروني',chatBtn:'ابدأ الآن',
+    mobileEval:'اطلب تقييم الآن',
+    mobileLinks:['الرئيسية','من نحن','خدماتنا','شركاءنا','المدونة','تواصل معنا'],
+  },
+  en: {
+    dir:'ltr',langBtn:'عر',navHome:'Home',navAbout:'About Us',navServices:'Services',navPartners:'Partners',navBlog:'Blog',navContact:'Contact Us',
+    btnEval:'Request Evaluation',heroBadge:'Certified by Saudi Authority of Accredited Valuers',
+    heroTitle:'We Value Your Choice<br><span>So You Can Decide!</span>',
+    heroSub:"We believe in what lies beyond numbers. We deeply research the factors, evidence, and inputs that raise or lower value in every real estate appraisal, and deliver an honest, transparent report.",
+    heroBtn1:'Learn More',heroBtn2:'Evaluate Now →',
+    aboutLabel:'About Us',aboutTitle:'Discover Aain',
+    aboutP1:"Aain Real Estate Valuation is a leading company certified by the Saudi Authority of Accredited Valuers. Since our launch in 2020, we draw on our leaders' expertise spanning over 10 years, applying the latest international valuation standards.",
+    aboutP2:'We provide accurate, reliable reports that enable investors and individuals to make sound decisions in the growing Saudi real estate market.',
+    aboutBtn:'Get Started',aboutBadge:'Years of Experience',
+    stat1:'Properties Valued',stat2:'SAR Properties Value',stat3:'Hours of Expertise',stat4:'Branches',
+    servLabel:'Services',servTitle:'We Valuate for Every Purpose',servSub:'For individuals and institutions, we provide accurate, certified valuations for all property types.',
+    s1t:'Feasibility Study',s1d:'Decide with confidence! Feasibility studies help investors evaluate the profit potential of a real estate project before starting.',
+    s2t:'Budget Valuation',s2d:'Set costs without surprises! Budget valuation helps property owners determine their project budget precisely.',
+    s3t:'Off-Plan Valuation',s3d:"Valuate before building! Helps real estate developers determine the right selling price for a property before construction.",
+    s4t:'Commercial Valuation',s4d:"Revenue is easy to forecast! Helps investors obtain valuable information about a property's profit opportunities.",
+    partLabel:'Partners',partTitle:'Our Services Have Earned the Trust of the Biggest Brands',partSub:'In the Kingdom of Saudi Arabia',
+    achLabel:'Achievements',achTitle:'Aain Achievements',achSub:'With our expertise and vision, we achieved this remarkable growth in just 4 years!',
+    ach1:'Properties Valued',ach2:'Million m² Properties',ach3:'Billion SAR Properties Value',ach4:'Hours of Expertise',ach5:'Years of Outstanding Experience',ach6:'Branches in Saudi Arabia',
+    brLabel:'Branches',brTitle:'Closest to You',brSub:"We have branches in the Kingdom's key cities to always be at your service.",
+    br1n:'Riyadh',br1a:'6375, Qaisar Ibn Al-Adel, 2566 Al-Rawabi District, Riyadh',
+    br2n:'Tabuk',br2a:'47919, Khadijah Bint Khuwalid St., Al-Safa',
+    br3n:'Khamis Mushait',br3a:'2592 Salah Al-Din Rd., Atoud, Khamis Mushait 62431, Saudi Arabia',
+    blogLabel:'Blog',blogTitle:'Everything You Need to Know',blogSub:'About real estate valuation, updates, and market news',
+    ctaTitle:'Start Your Journey With Us Today',ctaSub:"Get an accurate, trusted real estate valuation from certified experts. We're here to help you make the right decision.",ctaBtn:'Request a Quote',
+    nlTitle:'Subscribe to Our Newsletter',nlSub:'Get the latest real estate market and valuation news',nlBtn:'Subscribe',nlPlaceholder:'Enter your email address',
+    footDesc:'Aain Valuation Company, specialized in real estate valuation in Saudi Arabia.',
+    fCol1:'Quick Links',fl1:'About Us',fl2:'Services',fl3:'Partners',fl4:'Request Evaluation',fl5:'Blog',
+    fCol2:'Services',fs1:'Feasibility Study',fs2:'Budget Valuation',fs3:'Off-Plan Valuation',fs4:'Commercial Valuation',fs5:'Land Valuation',
+    fCol3:'Contact Us',fcopy:'© 2024 Aain. All Rights Reserved',fprivacy:'Privacy Policy',fterms:'Terms & Conditions',
+    chatHeader:'Aain Team at Your Service',chatSub:'Our expert team is here to help with all your inquiries and requests',
+    chatName:'First Name',chatPhone:'Phone Number',chatEmail:'Email Address',chatBtn:'Start Now',
+    mobileEval:'Request Evaluation Now',
+    mobileLinks:['Home','About Us','Services','Partners','Blog','Contact Us'],
+  }
+};
+
+let currentLang = 'ar';
+
+function toggleLang() {
+  currentLang = currentLang === 'ar' ? 'en' : 'ar';
+  applyTranslations(currentLang);
+  if(window.blogSwiper) {
+    window.blogSwiper.changeLanguageDirection(currentLang === 'ar' ? 'rtl' : 'ltr');
+  }
+}
+
+function applyTranslations(lang) {
+  const t = translations[lang];
+  document.documentElement.setAttribute('dir', t.dir);
+  document.documentElement.setAttribute('lang', lang);
+  document.body.classList.toggle('lang-en', lang === 'en');
+  document.getElementById('langBtn').textContent = t.langBtn;
+
+  const navLinkEls = document.querySelectorAll('.nav-links a');
+  ['navHome','navAbout','navServices','navPartners','navBlog','navContact'].forEach((k,i)=>{ if(navLinkEls[i]) navLinkEls[i].textContent=t[k]; });
+  const navBtn = document.querySelector('.nav-actions .btn-primary');
+  if(navBtn) navBtn.textContent = t.btnEval;
+  const mobileLinks = document.querySelectorAll('.mobile-menu-links a');
+  mobileLinks.forEach((el,i)=>{ if(t.mobileLinks[i]) el.textContent=t.mobileLinks[i]; });
+  const mobileBtn = document.querySelector('.mobile-menu-btn a');
+  if(mobileBtn) mobileBtn.textContent = t.mobileEval;
+
+  const heroBadge = document.querySelector('.hero-badge');
+  if(heroBadge) heroBadge.innerHTML = `<span class="hero-badge-dot"></span>${t.heroBadge}`;
+  const heroTitle = document.querySelector('.hero-title');
+  if(heroTitle) heroTitle.innerHTML = t.heroTitle;
+  const heroSub = document.querySelector('.hero-sub');
+  if(heroSub) heroSub.textContent = t.heroSub;
+  const heroBtns = document.querySelectorAll('.hero-actions a');
+  if(heroBtns[0]) heroBtns[0].textContent = t.heroBtn1;
+  if(heroBtns[1]) heroBtns[1].textContent = t.heroBtn2;
+
+  const aboutPs = document.querySelectorAll('.about-text > p');
+  if(aboutPs[0]) aboutPs[0].textContent = t.aboutP1;
+  if(aboutPs[1]) aboutPs[1].textContent = t.aboutP2;
+  const aboutBtn = document.querySelector('.about-text .btn-primary');
+  if(aboutBtn) aboutBtn.textContent = t.aboutBtn;
+  const aboutBadge = document.querySelector('.about-img-badge .label');
+  if(aboutBadge) aboutBadge.textContent = t.aboutBadge;
+  const statLabels = document.querySelectorAll('.stat-box .stat-label');
+  ['stat1','stat2','stat3','stat4'].forEach((k,i)=>{ if(statLabels[i]) statLabels[i].textContent=t[k]; });
+
+  const sCards = document.querySelectorAll('.service-card');
+  ['s1t','s2t','s3t','s4t'].forEach((k,i)=>{ const c=sCards[i]; if(c){ const tt=c.querySelector('.service-title'); const d=c.querySelector('.service-desc'); if(tt)tt.textContent=t[k]; if(d)d.textContent=t[k.replace('t','d')]; }});
+
+  const achLabels = document.querySelectorAll('.achievement-label');
+  ['ach1','ach2','ach3','ach4','ach5','ach6'].forEach((k,i)=>{ if(achLabels[i]) achLabels[i].textContent=t[k]; });
+
+  const brNames = document.querySelectorAll('.branch-name');
+  const brAddrs = document.querySelectorAll('.branch-address');
+  ['br1n','br2n','br3n'].forEach((k,i)=>{ if(brNames[i]) brNames[i].textContent=t[k]; });
+  ['br1a','br2a','br3a'].forEach((k,i)=>{ if(brAddrs[i]) brAddrs[i].textContent=t[k]; });
+
+  document.querySelectorAll('[data-ar][data-en]').forEach(el => {
+    el.textContent = lang === 'en' ? el.dataset.en : el.dataset.ar;
+  });
+
+  const ctaTitle = document.querySelector('.cta-title');
+  const ctaSub = document.querySelector('.cta-sub');
+  const ctaBtn = document.querySelector('.cta-btn');
+  if(ctaTitle) ctaTitle.textContent = t.ctaTitle;
+  if(ctaSub) ctaSub.textContent = t.ctaSub;
+  if(ctaBtn) ctaBtn.innerHTML = `${t.ctaBtn} <span class="cta-arrow">${lang==='ar'?'←':'→'}</span>`;
+
+  const nlTitle = document.querySelector('.newsletter-text h3');
+  const nlSub = document.querySelector('.newsletter-text p');
+  const nlInput = document.querySelector('.newsletter-form input');
+  const nlBtn = document.querySelector('.newsletter-form button');
+  if(nlTitle) nlTitle.textContent = t.nlTitle;
+  if(nlSub) nlSub.textContent = t.nlSub;
+  if(nlInput) nlInput.placeholder = t.nlPlaceholder;
+  if(nlBtn) nlBtn.textContent = t.nlBtn;
+
+  const footDesc = document.querySelector('.footer-brand p');
+  if(footDesc) footDesc.textContent = t.footDesc;
+  const fColTitles = document.querySelectorAll('.footer-col-title');
+  if(fColTitles[0]) fColTitles[0].textContent = t.fCol1;
+  if(fColTitles[1]) fColTitles[1].textContent = t.fCol2;
+  if(fColTitles[2]) fColTitles[2].textContent = t.fCol3;
+  const fLinks = document.querySelectorAll('.footer-grid > div:nth-child(2) .footer-links a');
+  ['fl1','fl2','fl3','fl4','fl5'].forEach((k,i)=>{ if(fLinks[i]) fLinks[i].textContent=t[k]; });
+  const fsLinks = document.querySelectorAll('.footer-grid > div:nth-child(3) .footer-links a');
+  ['fs1','fs2','fs3','fs4','fs5'].forEach((k,i)=>{ if(fsLinks[i]) fsLinks[i].textContent=t[k]; });
+  const fcopy = document.querySelector('.footer-bottom p');
+  if(fcopy) fcopy.textContent = t.fcopy;
+  const fpLinks = document.querySelectorAll('.footer-bottom a');
+  if(fpLinks[0]) fpLinks[0].textContent = t.fprivacy;
+  if(fpLinks[1]) fpLinks[1].textContent = t.fterms;
+
+  const chatHeader = document.querySelector('.chat-widget-header h4');
+  const chatSubEl = document.querySelector('.chat-widget-header p');
+  if(chatHeader) chatHeader.textContent = t.chatHeader;
+  if(chatSubEl) chatSubEl.textContent = t.chatSub;
+  const chatLabels = document.querySelectorAll('.chat-field label');
+  if(chatLabels[0]) chatLabels[0].textContent = t.chatName;
+  if(chatLabels[1]) chatLabels[1].textContent = t.chatPhone;
+  if(chatLabels[2]) chatLabels[2].textContent = t.chatEmail;
+  const chatSubmit = document.querySelector('.chat-widget-submit');
+  if(chatSubmit) chatSubmit.textContent = t.chatBtn;
+  const chatBody = document.querySelector('.chat-widget-body');
+  if(chatBody) chatBody.style.direction = t.dir;
+
+  // تغيير اللوجو بناءً على اللغة
+  const mainLogo = document.getElementById('mainLogo');
+  if (mainLogo) {
+    if (lang === 'ar') {
+      mainLogo.src = 'images/logoAr.png'; // حط مسار اللوجو العربي هنا
+    } else {
+      mainLogo.src = 'images/logoEn.png'; // حط مسار اللوجو الإنجليزي هنا
+    }
+  }
+}
+
+// ===== PARTICLES =====
+(function(){
+  const container = document.getElementById('particles');
+  if(!container) return;
+  for(let i=0;i<30;i++){
+    const p=document.createElement('div');
+    p.className='particle';
+    p.style.cssText=`left:${Math.random()*100}%;width:${Math.random()*4+2}px;height:${Math.random()*4+2}px;animation-duration:${Math.random()*15+10}s;animation-delay:${Math.random()*10}s;opacity:${Math.random()*0.5+0.1};`;
+    container.appendChild(p);
+  }
+})();
+
+// ===== NAVBAR SCROLL =====
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', ()=>{ navbar.classList.toggle('scrolled', window.scrollY>50); });
+
+// ===== MOBILE MENU =====
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+let menuOpen = false;
+hamburger.addEventListener('click', ()=>{
+  menuOpen=!menuOpen;
+  hamburger.classList.toggle('open',menuOpen);
+  mobileMenu.classList.toggle('open',menuOpen);
+  document.body.style.overflow=menuOpen?'hidden':'';
+});
+function closeMenu(){
+  menuOpen=false;
+  hamburger.classList.remove('open');
+  mobileMenu.classList.remove('open');
+  document.body.style.overflow='';
+}
+mobileMenu.addEventListener('click',(e)=>{ if(e.target===mobileMenu)closeMenu(); });
+
+// ===== REVEAL =====
+const revealEls = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{ if(entry.isIntersecting){ entry.target.classList.add('visible'); revealObserver.unobserve(entry.target); } });
+},{threshold:0.12,rootMargin:'0px 0px -40px 0px'});
+revealEls.forEach(el=>revealObserver.observe(el));
+
+// ===== COUNTERS =====
+const counterEls = document.querySelectorAll('.counter-val[data-target]');
+const counterObserver = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{ if(entry.isIntersecting&&!entry.target.dataset.started){ entry.target.dataset.started='true'; animateCounter(entry.target); } });
+},{threshold:0.5});
+counterEls.forEach(el=>counterObserver.observe(el));
+function animateCounter(el){
+  const target=parseInt(el.dataset.target);
+  const step=target/(1800/16);
+  let current=0;
+  const timer=setInterval(()=>{
+    current+=step;
+    if(current>=target){el.textContent=formatNumber(target);clearInterval(timer);}
+    else{el.textContent=formatNumber(Math.floor(current));}
+  },16);
+}
+function formatNumber(n){ if(n>=1000)return(n/1000).toFixed(n%1000===0?0:1)+'K'; return n.toString(); }
+
+// ===== BRANCH CARDS =====
+document.querySelectorAll('.branch-card').forEach(card=>{
+  card.addEventListener('click',()=>{
+    document.querySelectorAll('.branch-card').forEach(c=>c.classList.remove('active'));
+    card.classList.add('active');
+  });
+});
+
+// ===== NEWSLETTER =====
+function handleNewsletter(e){
+  e.preventDefault();
+  const btn=e.target.querySelector('button');
+  const input=e.target.querySelector('input');
+  btn.textContent=currentLang==='en'?'✓ Subscribed!':'✓ تم الاشتراك!';
+  btn.style.background='var(--secondary)';btn.style.color='#fff';
+  input.value='';
+  setTimeout(()=>{btn.textContent=currentLang==='en'?'Subscribe':'اشترك';btn.style.background='';btn.style.color='';},3000);
+}
+
+// ===== SMOOTH SCROLL =====
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const href=a.getAttribute('href');
+    if(href==='#')return;
+    const target=document.querySelector(href);
+    if(target){e.preventDefault();target.scrollIntoView({behavior:'smooth',block:'start'});}
+  });
+});
+
+// ===== ACTIVE NAV =====
+const sections = document.querySelectorAll('section[id], div[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll',()=>{
+  let current='';
+  sections.forEach(section=>{ if(window.scrollY>=section.offsetTop-100)current=section.getAttribute('id'); });
+  navLinks.forEach(link=>{
+    link.classList.remove('active');
+    const href=link.getAttribute('href').replace('#','');
+    if(href===current||(current===''&&link.getAttribute('href')==='#'))link.classList.add('active');
+  });
+});
+
+// ===== BLOG SWIPER =====
+window.blogSwiper = new Swiper('.blog-swiper', {
+  slidesPerView:1, spaceBetween:24, loop:true, speed:600,
+  rtl: true,
+  pagination:{ el:'.blog-swiper-pagination', clickable:true },
+  navigation:{ nextEl:'#blogNext', prevEl:'#blogPrev' },
+  breakpoints:{ 640:{slidesPerView:2}, 1024:{slidesPerView:3} }
+});
+
+// ===== CHAT WIDGET =====
+let chatOpen = false;
+function toggleChat(){
+  chatOpen=!chatOpen;
+  document.getElementById('chatWidget').classList.toggle('open',chatOpen);
+}
+function submitChat(){
+  const name=document.getElementById('chatName').value;
+  if(!name)return;
+  const btn=document.querySelector('.chat-widget-submit');
+  btn.textContent=currentLang==='en'?"✓ Submitted! We'll be in touch.":'✓ تم الإرسال! سنتواصل معك قريباً';
+  btn.style.background='var(--secondary)';
+  document.getElementById('chatName').value='';
+  document.getElementById('chatPhone').value='';
+  document.getElementById('chatEmail').value='';
+  setTimeout(()=>{ btn.style.background=''; toggleChat(); btn.textContent=currentLang==='en'?'Start Now':'ابدأ الآن'; },2500);
+}
+
+  // ===== SCROLL TO TOP =====
+const scrollTopBtn = document.getElementById('scrollTopBtn');
+
+// إظهار وإخفاء الزرار مع السكرول
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 400) { // هيظهر بعد ما تنزل 400 بيكسل
+    scrollTopBtn.classList.add('show');
+  } else {
+    scrollTopBtn.classList.remove('show');
+  }
+});
+
+// الرجوع لأعلى عند الضغط
+scrollTopBtn.addEventListener('click', () => {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+});
+document.addEventListener("DOMContentLoaded", function () {
+  const lenis = new Lenis({
+    duration: 1.4,
+    smoothWheel: true,
+    smoothTouch: true,
+    wheelMultiplier: 0.8,
+    touchMultiplier: 1.2,
+  });
+  function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+  }
+  requestAnimationFrame(raf);
+});
+</script>
+</body>
+</html>
