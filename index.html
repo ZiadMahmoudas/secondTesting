@@ -1574,6 +1574,114 @@ body.lang-en .cta-floating-arrow {
   0%, 100% { transform: translateY(-50%) scaleX(-1) translateX(0); }
   50% { transform: translateY(-50%) scaleX(-1) translateX(-10px); }
 }
+ /* ========== SERVICES ========== */
+  /* ========== SERVICES BENTO ========== */
+  .services-section { background: var(--light-bg); }
+  .services-header { text-align: center; margin-bottom: 56px; }
+
+  /* Desktop Bento */
+  .services-bento { display: flex; flex-direction: column; gap: 16px; }
+  .services-bento-row { display: flex;flex-direction: column; gap: 16px; justify-content: center; }
+    @media(min-width:992px){
+        .services-bento-row{
+            flex-direction: row;
+        }
+    }
+  .bento-card {
+    border-radius: 16px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+    transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
+    position: relative;
+    overflow: hidden;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .bento-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.14);
+  }
+
+  /* Colors matching original */
+  .bento-card.c1 { background: rgba(0,149,211,0.07); }
+  .bento-card.c2 { background: rgba(0,149,211,0.13); }
+  .bento-card.c3 { background: rgba(0,181,137,0.12); }
+  .bento-card.c4 { background: rgba(0,181,137,0.06); }
+
+  .bento-card-body { padding: 28px 28px 0; }
+  .bento-card-title {
+    font-size: 20px;
+    font-weight: 900;
+    color: var(--indigo);
+    margin-bottom: 14px;
+    line-height: 1.3;
+  }
+  .bento-card-desc {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.75;
+  }
+  .bento-card.large .bento-card-desc { max-width: 480px; }
+  .bento-card.small .bento-card-desc { max-width: 260px; }
+
+  .bento-card-img {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    padding-left: 0;
+    margin-bottom: -4px;
+    margin-left: -12px;
+  }
+  .bento-card-img img {
+    width: 180px;
+    height: 180px;
+    object-fit: contain;
+    transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+    filter: drop-shadow(0 8px 20px rgba(0,0,0,0.15));
+  }
+  .bento-card:hover .bento-card-img img { transform: scale(1.08) translateY(-4px); }
+
+  /* Mobile Swiper for services */
+  .services-swiper-wrap { display: none; }
+  .services-swiper { overflow: hidden; }
+  .services-swiper .swiper-slide { padding: 4px 8px; }
+
+  .bento-card-mobile {
+    background: rgba(0,149,211,0.10);
+    border-radius: 14px;
+    height: 300px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.07);
+    transition: all 0.3s;
+  }
+  .bento-card-mobile .bento-card-body { padding: 20px 20px 0; }
+  .bento-card-mobile .bento-card-title { font-size: 18px; }
+
+  .services-swiper-nav {
+    display: flex; align-items: center; gap: 12px; margin-top: 24px; justify-content: center;
+  }
+  .serv-btn-prev, .serv-btn-next {
+    width: 40px; height: 40px; border-radius: 50%;
+    border: 2px solid var(--indigo); background: #fff;
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    font-size: 18px; color: var(--indigo); transition: all 0.3s;
+  }
+  .serv-btn-prev:hover, .serv-btn-next:hover { background: var(--indigo); color: #fff; }
+  .services-swiper-pagination .swiper-pagination-bullet {
+    width: 8px; height: 8px; background: #ccc; opacity: 1; margin: 0 4px;
+    border-radius: 4px; transition: all 0.3s;
+  }
+  .services-swiper-pagination .swiper-pagination-bullet-active {
+    background: var(--indigo); width: 24px;
+  }
+
+  @media (max-width: 1024px) {
+    .services-swiper-wrap { display: block; }
+  }
 </style>
 </head>
 <body>
@@ -1747,6 +1855,66 @@ body.lang-en .cta-floating-arrow {
     </div>
   </div>
 </section>
+
+
+
+<!-- ===== SERVICES ===== -->
+<section class="services-section" id="services">
+  <div class="container">
+    <div class="services-header reveal from-bottom">
+      <div class="section-label" style="justify-content:center" data-ar="خدماتنا" data-en="Services">خدماتنا</div>
+      <h2 class="section-title" data-ar="نُقيم لمختلف الأغراض" data-en="We Valuate for Every Purpose">نُقيم لمختلف الأغراض</h2>
+      <p class="section-sub" style="margin: 0 auto;" data-ar="للأفراد وللمؤسسات … نُقدم تقييمات دقيقة ومعتمدة لكل أنواع العقارات" data-en="For individuals and institutions… we provide accurate, certified valuations for all property types.">للأفراد وللمؤسسات … نُقدم تقييمات دقيقة ومعتمدة لكل أنواع العقارات</p>
+    </div>
+
+    <!-- Desktop Bento Grid -->
+    <div class="services-bento">
+      <div class="services-bento-row">
+        <!-- Small card -->
+        <div class="bento-card small c1 reveal from-bottom reveal-delay-1">
+          <div class="bento-card-body">
+            <div class="bento-card-title" data-ar="دراسة الجدوى" data-en="Feasibility Study">دراسة الجدوى</div>
+            <p class="bento-card-desc" data-ar="قرر بثقة! تُساعد دراسة الجدوى المستثمرين على تقييم الإمكانات الربحية لمشروع عقاري قبل البدء فيه" data-en="Decide with confidence! Feasibility studies help investors evaluate the profit potential of a real estate project before starting.">قرر بثقة! تُساعد دراسة الجدوى المستثمرين على تقييم الإمكانات الربحية لمشروع عقاري قبل البدء فيه</p>
+          </div>
+          <div class="bento-card-img">
+            <img src="images/ser1.webp" alt="دراسة الجدوى"/>
+          </div>
+        </div>
+        <!-- Large card -->
+        <div class="bento-card large c2 reveal from-bottom reveal-delay-2">
+          <div class="bento-card-body">
+            <div class="bento-card-title" data-ar="التقييم لغرض الميزانية" data-en="Budget Valuation">التقييم لغرض الميزانية</div>
+            <p class="bento-card-desc" data-ar="حدد تكاليفك بدون مفاجآت! يُساعد التقييم لغرض الميزانية أصحاب العقارات على تحديد ميزانية مشروعهم العقاري بدقة." data-en="Set costs without surprises! Budget valuation helps property owners determine their real estate project budget precisely.">حدد تكاليفك بدون مفاجآت! يُساعد التقييم لغرض الميزانية أصحاب العقارات على تحديد ميزانية مشروعهم العقاري بدقة.</p>
+          </div>
+          <div class="bento-card-img">
+            <img src="images/ser2.webp" alt="التقييم لغرض الميزانية"/>
+          </div>
+        </div>
+      </div>
+
+      <div class="services-bento-row">
+        <!-- Large card -->
+        <div class="bento-card large c3 reveal from-bottom reveal-delay-2">
+          <div class="bento-card-body">
+            <div class="bento-card-title" data-ar="التقييم للبيع على الخارطة" data-en="Off-Plan Valuation">التقييم للبيع على الخارطة</div>
+            <p class="bento-card-desc" data-ar="قيّم قبل البناء! يُساعد التقييم المطورين العقاريين على تحديد سعر البيع المناسب للعقار قبل بنائه." data-en="Valuate before building! Helps real estate developers determine the right selling price for a property before construction.">قيّم قبل البناء! يُساعد التقييم المطورين العقاريين على تحديد سعر البيع المناسب للعقار قبل بنائه.</p>
+          </div>
+          <div class="bento-card-img">
+            <img src="images/ser3.webp" alt="التقييم للبيع على الخارطة"/>
+          </div>
+        </div>
+        <!-- Small card -->
+        <div class="bento-card small c4 reveal from-bottom reveal-delay-3">
+          <div class="bento-card-body">
+            <div class="bento-card-title" data-ar="التقييم التجاري" data-en="Commercial Valuation">التقييم التجاري</div>
+            <p class="bento-card-desc" data-ar="الإيرادات سهل تتوقعها! يُساعد التقييم المستثمرين على الحصول على معلومات قيّمة حول الفرص الربحية للعقار" data-en="Revenue is easy to forecast! Helps investors obtain valuable information about a property's profit opportunities.">الإيرادات سهل تتوقعها! يُساعد التقييم المستثمرين على الحصول على معلومات قيّمة حول الفرص الربحية للعقار</p>
+          </div>
+          <div class="bento-card-img">
+            <img src="images/ser4.webp" alt="التقييم التجاري"/>
+          </div>
+        </div>
+      </div>
+    </div>
 
 <!-- ===== PARTNERS ===== -->
 <section class="partners-section" id="partners">
@@ -2491,6 +2659,16 @@ document.addEventListener("DOMContentLoaded", function () {
   }
   requestAnimationFrame(raf);
 });
+
+// ===== SERVICES SWIPER =====
+window.servSwiper = new Swiper('.services-swiper', {
+  slidesPerView:1, spaceBetween:16, loop:true, speed:500,
+  rtl: true,
+  pagination:{ el:'.services-swiper-pagination', clickable:true },
+  navigation:{ nextEl:'#servNext', prevEl:'#servPrev' },
+  breakpoints:{ 580:{slidesPerView:2} }
+});
+
 </script>
 </body>
 </html>
