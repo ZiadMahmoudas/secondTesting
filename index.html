@@ -1935,7 +1935,7 @@ https://cdn.jsdelivr.net/npm/lenis@1.3.11/dist/lenis.min.css
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand reveal from-right">
-      <img id="mainLogo" src="images/logoAr.png" alt="عائن">
+      <img id="mainLogo1" src="images/logoAr.png" alt="عائن">
 
         <p>شركة عائن للتقييم، متخصصة في التقييم العقاري في السعودية.</p>
   <div class="footer-socials">
@@ -2237,6 +2237,14 @@ function applyTranslations(lang) {
       mainLogo.src = 'images/logoAr.png'; // حط مسار اللوجو العربي هنا
     } else {
       mainLogo.src = 'images/logoEn.png'; // حط مسار اللوجو الإنجليزي هنا
+    }
+  }
+  const mainLogo1 = document.getElementById('mainLogo1');
+  if (mainLogo1) {
+    if (lang === 'ar') {
+      mainLogo1.src = 'images/logoAr.png'; // حط مسار اللوجو العربي هنا
+    } else {
+      mainLogo1.src = 'images/logoEn.png'; // حط مسار اللوجو الإنجليزي هنا
     }
   }
 }
