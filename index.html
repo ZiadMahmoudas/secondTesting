@@ -562,7 +562,33 @@ https://cdn.jsdelivr.net/npm/lenis@1.3.11/dist/lenis.min.css
   }
 
   /* ========== SERVICES ========== */
-  .services-section { background: var(--light-bg); }
+  .services-section {
+  background: var(--light-bg);
+  position: relative; /* ضروري عشان الأشكال تتربط بالقسم ده */
+  overflow: hidden; /* عشان الأشكال متخرجش برا القسم */
+}
+.services-section .container {
+  position: relative;
+  z-index: 2; /* عشان المحتوى يبقى فوق الأشكال */
+}
+.service-decor {
+  position: absolute;
+  z-index: 0;
+  width: 200px;
+  height: 200px;
+  display: none; /* مخفية في الموبايل عشان الزحمة */
+}
+@media (min-width: 1024px) {
+  .service-decor { display: block; } /* بتظهر في الشاشات الكبيرة بس */
+}
+.service-decor.decor-right {
+  bottom: 0;
+  right: 0;
+}
+.service-decor.decor-left {
+  top: -30px;
+  left: 0;
+}
   .services-header { text-align: center; margin-bottom: 56px; }
   .services-grid {
     display: grid;
@@ -1508,6 +1534,46 @@ https://cdn.jsdelivr.net/npm/lenis@1.3.11/dist/lenis.min.css
     right: 20px;
   }
 }
+/* ========== CTA ARROW DECOR ========== */
+.cta-btn-wrapper {
+  position: relative;
+  display: inline-block;
+  z-index: 2;
+}
+.cta-floating-arrow {
+  position: absolute;
+  width: 60px;
+  height: 55px;
+  top: 50%;
+  right: -80px; /* مكان السهم جنب الزرار من اليمين */
+  transform: translateY(-50%);
+  z-index: -1;
+  pointer-events: none;
+  animation: floatArrowOutside 3s ease-in-out infinite; /* حركة عائمة */
+}
+
+/* أخفاء السهم في الموبايل عشان ميبوظش الأبعاد */
+@media (max-width: 768px) {
+  .cta-floating-arrow { display: none; }
+}
+
+/* تأثير الحركة (Animation) */
+@keyframes floatArrowOutside {
+  0%, 100% { transform: translateY(-50%) translateX(0); }
+  50% { transform: translateY(-50%) translateX(-10px); }
+}
+
+/* دعم النسخة الإنجليزية (عكس اتجاه السهم) */
+body.lang-en .cta-floating-arrow {
+  right: auto;
+  left: -80px;
+  transform: translateY(-50%) scaleX(-1);
+  animation: floatArrowOutsideEn 3s ease-in-out infinite;
+}
+@keyframes floatArrowOutsideEn {
+  0%, 100% { transform: translateY(-50%) scaleX(-1) translateX(0); }
+  50% { transform: translateY(-50%) scaleX(-1) translateX(-10px); }
+}
 </style>
 </head>
 <body>
@@ -1641,6 +1707,16 @@ https://cdn.jsdelivr.net/npm/lenis@1.3.11/dist/lenis.min.css
 
 <!-- ===== SERVICES ===== -->
 <section class="services-section" id="services">
+    <div class="service-decor decor-right">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 137 161" width="100%" height="100%">
+      <path stroke="#0095D3" stroke-linecap="round" stroke-width="11" d="M218.343 6.15C155.577 4.262 25.236 43.253 6 214.33"></path>
+    </svg>
+  </div>
+  <div class="service-decor decor-left">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 215 122" width="100%" height="100%">
+      <path stroke="#0095D3" stroke-linecap="round" stroke-width="11" d="M-51 99.349c56.782 26.503 188.276 40.454 260-115.77"></path>
+    </svg>
+  </div>
   <div class="container">
     <div class="services-header">
       <div class="section-label" style="justify-content:center">خدماتنا</div>
@@ -1905,10 +1981,15 @@ https://cdn.jsdelivr.net/npm/lenis@1.3.11/dist/lenis.min.css
     <div class="cta-inner reveal from-scale">
       <h2 class="cta-title">ابدأ رحلتك معنا اليوم</h2>
       <p class="cta-sub">احصل على تقييم عقاري دقيق وموثوق من خبراء معتمدين. نحن هنا لمساعدتك في اتخاذ القرار الصح.</p>
-      <a href="#contact" class="cta-btn">
-        طلب عرض أسعار
-        <span class="cta-arrow">←</span>
-      </a>
+    <div class="cta-btn-wrapper">
+  <a href="#contact" class="cta-btn">
+    طلب عرض أسعار
+    <span class="cta-arrow">←</span>
+  </a>
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 81 71" class="cta-floating-arrow">
+    <path stroke="#80CAE9" stroke-linecap="round" stroke-miterlimit="10" stroke-width="3.43" d="M65.385 1.785c26.102 20.105 17.243 64.773-46.06 55.512M4.986 54.693l21.668-4.44-6.321 7.326 3.224 9.12-18.57-12.006z"></path>
+  </svg>
+</div>
     </div>
   </div>
 </section>
