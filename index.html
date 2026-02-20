@@ -1682,6 +1682,338 @@ body.lang-en .cta-floating-arrow {
   @media (max-width: 1024px) {
     .services-swiper-wrap { display: block; }
   }
+  
+/* تنسيق السكشن والخلفيات */
+.about-section {
+    position: relative;
+    padding: 100px 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh;
+    overflow: hidden;
+}
+
+.bg-shape {
+    position: absolute;
+    z-index: -1;
+}
+
+.shape-top-left {
+    width: 500px;
+    height: 500px;
+    left: -200px;
+    top: -227px;
+}
+
+.shape-bottom-right {
+    width: 400px;
+    height: 400px;
+    right: -150px;
+    bottom: -150px;
+}
+
+.container {
+    display: flex;
+    flex-direction: row-reverse; /* عشان نخلي النص شمال والصور يمين زي الصورة المرفقة */
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    width: 100%;
+    gap: 50px;
+}
+
+/* تنسيق النصوص */
+.content-col {
+    flex: 1;
+    max-width: 550px;
+    text-align: right;
+}
+
+.content-col h2 {
+    color: #004B75;
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.content-col p {
+    color: #666;
+    line-height: 1.8;
+    font-size: 16px;
+    margin-bottom: 30px;
+}
+
+.btn {
+    display: inline-block;
+    background-color: #2F8BB2;
+    color: #fff;
+    padding: 10px 40px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 700;
+    transition: background 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #005A8D;
+}
+
+/* 🌟 السحر كله هنا: تنسيق وحركة الصور 🌟 */
+.images-col {
+    flex: 1;
+    position: relative;
+    height: 400px;
+    max-width: 500px;
+    perspective: 1000px; /* تفعيل البعد التالت */
+    cursor: pointer;
+}
+
+.img-wrapper {
+    position: static;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-style: preserve-3d;
+}
+@media(min-width:992px){
+    .img-wrapper{
+        position: absolute;
+    }
+}
+.img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* الصورة اللي ورا */
+.img-back {
+width: 314px;
+    height: 294px;
+    top: 56px;
+    right: -56px;
+    z-index: 1;
+    transform: rotateY(0deg) translateZ(0);
+}
+
+/* الصورة اللي قدام */
+.img-front {
+ width: 189px;
+    height: 256px;
+    top: 70px;
+    left: -16px;
+    z-index: 2;
+    border: 5px solid #fff;
+    /* transform: rotateY(25deg) translateZ(50px); */
+    box-shadow: -15px 20px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* 🎯 تأثير الـ Hover: بيبصوا لبعض */
+.images-col:hover .img-back {
+    /* تلف ناحية الشمال عشان تبص للصورة الصغيرة */
+    transform: rotateY(-20deg) translateZ(-0px) translateX(-20px);
+}
+
+.images-col:hover .img-front {
+    /* تلف ناحية اليمين أكتر عشان تبص للصورة الكبيرة */
+    transform: rotateY(35deg) translateZ(0px) translateX(-7px);
+}
+
+/* تنسيقات الـ Observer للظهور التدريجي */
+.hidden-element {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.hidden-element.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* تجاوب مع الموبايل */
+@media (max-width: 900px) {
+    .container {
+        flex-direction: column;
+        text-align: center;
+    }
+    .content-col {
+        text-align: center;
+    }
+    .images-col {
+        width: 100%;
+        height: 350px;
+    }
+    .img-front {
+        left: 0;
+    }
+}
+/* تجاوب مع الموبايل باحترافية */
+@media (max-width: 900px) {
+    .container {
+        /* السر هنا: عكسنا الترتيب عشان الصور تيجي فوق النص */
+        flex-direction: column-reverse; 
+        text-align: center;
+        gap: 40px; /* مسافة مريحة للعين بين الصور والنص */
+    }
+    
+    .content-col {
+        text-align: center;
+        padding: 0 15px; /* مساحة تنفس للنص من الجناب */
+    }
+    
+    .images-col {
+        width: 100%;
+        height: 320px; /* ارتفاع مناسب لحجم شاشة الموبايل */
+        /* التوسيط عشان الصور تبان في النص بالظبط */
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+    
+    /* تصغير مقاسات الصور وتظبيط أماكنها عشان تناسب الموبايل من غير ما تضرب بره الشاشة */
+    .img-back {
+        width: 341px;
+        height: 230px;
+        right: 15%; /* نسبة مئوية عشان تفضل متسنترة في أي مقاس موبايل */
+        top: 0;
+    }
+    
+    .img-front {
+        width: 277px;
+        height: 210px;
+        left: 15%;
+        top: 70px;
+    }
+    
+    /* تظبيط حركة الـ Hover في الموبايل عشان تفضل ناعمة */
+    .images-col:hover .img-back {
+        transform: rotateY(-15deg) translateZ(0px) translateX(-10px);
+    }
+
+    .images-col:hover .img-front {
+        transform: rotateY(25deg) translateZ(0px) translateX(0px);
+    }
+}
+@media(min-width:1090px){
+  .img-front{
+        top: 70px;
+    left: 50px;
+  }
+}
+/* --- Hero Section & Background --- */
+.hero-section {
+    position: relative;
+    min-height: 100vh;
+    /* حط رابط الصورة بتاعتك هنا */
+    background-image: url('https://images.unsplash.com/photo-1580674684081-7617fbf3d745?q=80&w=2000&auto=format&fit=crop'); 
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    display: flex;
+    flex-direction: column;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* لون التعتيم الأزرق الغامق عشان يبرز الكلام */
+    background: linear-gradient(to bottom, rgba(16, 42, 67, 0.8), rgba(16, 42, 67, 0.6));
+    z-index: 1;
+}
+
+
+/* --- Hero Content --- */
+.hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: #fff;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-title {
+    font-size: 56px;
+    font-weight: 800;
+    line-height: 1.3;
+    margin-bottom: 20px;
+}
+
+.hero-subtitle {
+    font-size: 18px;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.85);
+    max-width: 800px;
+    margin-bottom: 40px;
+}
+
+/* --- الأزرار وحركة الـ Hover المطلوبة --- */
+.hero-buttons {
+    display: flex;
+    gap: 20px;
+}
+
+.btn-animated {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px 35px;
+    background-color: rgba(255, 255, 255, 0.15); /* شفافية زي الصورة */
+    backdrop-filter: blur(5px);
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 16px;
+    border-radius: 8px;
+    overflow: hidden; /* عشان الأنيميشن مايطلعش برا الزرار */
+    z-index: 1;
+    transition: color 0.4s ease;
+}
+
+.btn-animated.secondary {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+/* خدعة الـ Hover من الشمال لليمين */
+.btn-animated::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #2F8BB2; /* لون الزرار لما تعمل هوفر */
+    z-index: -1;
+    
+    /* الأساس: مخفي ونقطة الارتكاز ناحية اليمين */
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-animated:hover::before {
+    /* لما تهوفر: بيظهر ونقطة الارتكاز بتبقى ناحية الشمال */
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+/* تجاوب السيكشن مع الموبايل */
+@media (max-width: 768px) {
+    .hero-title { font-size: 36px; }
+    .hero-subtitle { font-size: 15px; }
+    .hero-buttons { flex-direction: column; width: 100%; max-width: 300px;}
+}
 </style>
 </head>
 <body>
@@ -1720,6 +2052,28 @@ body.lang-en .cta-floating-arrow {
   </div>
 </header>
 
+
+    <header class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="hero-content container">
+            <h1 class="hero-title">قيّم أصولك اليوم<br>واتخذ قرارك بثقة</h1>
+            <p class="hero-subtitle">
+                حلول عقارية متكاملة تناسب أهدافك الاستثمارية. نختار لك الفرص التي تحقق نمواً مستداماً<br>
+                وتضمن قيمة أعلى على المدى الطويل.
+            </p>
+            
+            <div class="hero-buttons">
+                <a href="#" class="btn-animated">
+                    اطلب تقييما الآن 
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                </a>
+                <a href="#" class="btn-animated secondary">
+                    تعرف على خدماتنا
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                </a>
+            </div>
+        </div>
+    </header>
 <!-- Mobile Menu -->
 <div class="mobile-menu" id="mobileMenu">
   <div class="mobile-menu-close-area">اضغط للإغلاق</div>
@@ -1737,7 +2091,7 @@ body.lang-en .cta-floating-arrow {
 </div>
 
 <!-- ===== HERO ===== -->
-<section class="hero" id="home">
+<!-- <section class="hero" id="home">
   <div class="hero-bg"></div>
   <div class="hero-overlay"></div>
   <div class="hero-grid"></div>
@@ -1764,10 +2118,41 @@ body.lang-en .cta-floating-arrow {
       <div class="scroll-dot-inner"></div>
     </div>
   </div>
-</section>
+</section> -->
 
 <!-- ===== ABOUT ===== -->
-<section class="about-section" id="about">
+    <section class="about-section hidden-element">
+        <div class="bg-shape shape-top-left">
+            <img src="images/Vector-1-1.svg" alt="">
+        </div>
+        <div class="bg-shape shape-bottom-right">
+            <img src="images/Vector-1.svg" alt="">
+        </div>
+
+        <div class="container">
+            <div class="content-col">
+                <h2>نبذة عن مؤشر القيمة</h2>
+                <p>
+                    فريق مهني محترف يعمل في مجال تقييم الأصول والدراسات والاستشارات 
+                    منذ 2009 حيث تشكلت باكورة هذه الخبرات في تأسيس شركة مؤشر القيمة 
+                    للاستشارات المهنية لتكون منصة تقدم الخدمات الاحترافية في مجال 
+                    التقييم والدراسات والاستشارات.
+                </p>
+                <a href="#" class="btn">المزيد</a>
+            </div>
+
+            <div class="images-col">
+                <div class="img-wrapper img-back">
+                    <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Building">
+                </div>
+                <div class="img-wrapper img-front">
+                    <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Skyscraper">
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- <section class="about-section" id="about">
   <div class="container">
     <div class="about-grid">
       <div class="about-img-wrap reveal from-left">
@@ -1811,7 +2196,7 @@ body.lang-en .cta-floating-arrow {
       </div>
     </div>
   </div>
-</section>
+</section> -->
 
 <!-- ===== SERVICES ===== -->
 <section class="services-section" id="services">
@@ -1859,7 +2244,7 @@ body.lang-en .cta-floating-arrow {
 
 
 <!-- ===== SERVICES ===== -->
-<section class="services-section" id="services">
+<!-- <section class="services-section" id="services">
   <div class="container">
     <div class="services-header reveal from-bottom">
       <div class="section-label" style="justify-content:center" data-ar="خدماتنا" data-en="Services">خدماتنا</div>
@@ -1867,10 +2252,8 @@ body.lang-en .cta-floating-arrow {
       <p class="section-sub" style="margin: 0 auto;" data-ar="للأفراد وللمؤسسات … نُقدم تقييمات دقيقة ومعتمدة لكل أنواع العقارات" data-en="For individuals and institutions… we provide accurate, certified valuations for all property types.">للأفراد وللمؤسسات … نُقدم تقييمات دقيقة ومعتمدة لكل أنواع العقارات</p>
     </div>
 
-    <!-- Desktop Bento Grid -->
     <div class="services-bento">
       <div class="services-bento-row">
-        <!-- Small card -->
         <div class="bento-card small c1 reveal from-bottom reveal-delay-1">
           <div class="bento-card-body">
             <div class="bento-card-title" data-ar="دراسة الجدوى" data-en="Feasibility Study">دراسة الجدوى</div>
@@ -1880,7 +2263,6 @@ body.lang-en .cta-floating-arrow {
             <img src="images/ser1.webp" alt="دراسة الجدوى"/>
           </div>
         </div>
-        <!-- Large card -->
         <div class="bento-card large c2 reveal from-bottom reveal-delay-2">
           <div class="bento-card-body">
             <div class="bento-card-title" data-ar="التقييم لغرض الميزانية" data-en="Budget Valuation">التقييم لغرض الميزانية</div>
@@ -1893,7 +2275,6 @@ body.lang-en .cta-floating-arrow {
       </div>
 
       <div class="services-bento-row">
-        <!-- Large card -->
         <div class="bento-card large c3 reveal from-bottom reveal-delay-2">
           <div class="bento-card-body">
             <div class="bento-card-title" data-ar="التقييم للبيع على الخارطة" data-en="Off-Plan Valuation">التقييم للبيع على الخارطة</div>
@@ -1903,7 +2284,6 @@ body.lang-en .cta-floating-arrow {
             <img src="images/ser3.webp" alt="التقييم للبيع على الخارطة"/>
           </div>
         </div>
-        <!-- Small card -->
         <div class="bento-card small c4 reveal from-bottom reveal-delay-3">
           <div class="bento-card-body">
             <div class="bento-card-title" data-ar="التقييم التجاري" data-en="Commercial Valuation">التقييم التجاري</div>
@@ -1915,7 +2295,8 @@ body.lang-en .cta-floating-arrow {
         </div>
       </div>
     </div>
-
+    </div>
+</section> -->
 <!-- ===== PARTNERS ===== -->
 <section class="partners-section" id="partners">
   <div class="container">
@@ -2668,7 +3049,34 @@ window.servSwiper = new Swiper('.services-swiper', {
   navigation:{ nextEl:'#servNext', prevEl:'#servPrev' },
   breakpoints:{ 580:{slidesPerView:2} }
 });
+     document.addEventListener("DOMContentLoaded", function() {
+    // تحديد العناصر اللي عايزين نعملها أنيميشن
+    const elementsToAnimate = document.querySelectorAll('.hidden-element');
 
+    // إعداد الـ Intersection Observer
+    const observerOptions = {
+        root: null, // بيراقب بالنسبة للشاشة كلها
+        rootMargin: '0px',
+        threshold: 0.2 // الأكشن هيحصل لما 20% من السكشن يظهر على الشاشة
+    };
+
+    const sectionObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // إضافة كلاس الظهور
+                entry.target.classList.add('show');
+                
+                // وقف المراقبة بعد ما يظهر عشان الأنيميشن مايتكررش كل شوية
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    // تشغيل المراقب على العناصر
+    elementsToAnimate.forEach(element => {
+        sectionObserver.observe(element);
+    });
+});
 </script>
 </body>
 </html>
