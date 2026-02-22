@@ -486,7 +486,7 @@ https://cdn.jsdelivr.net/npm/lenis@1.3.11/dist/lenis.min.css
   .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 24px;
+    padding: 50px 24px;
   }
   .section-label {
     font-size: 13px;
@@ -752,7 +752,7 @@ https://cdn.jsdelivr.net/npm/lenis@1.3.11/dist/lenis.min.css
     position: relative;
     overflow: hidden;
   }
-  .achievements-section::before {
+  /* .achievements-section::before {
     content: '';
     position: absolute;
     top: -100px; right: -100px;
@@ -767,7 +767,7 @@ https://cdn.jsdelivr.net/npm/lenis@1.3.11/dist/lenis.min.css
     width: 400px; height: 400px;
     background: radial-gradient(circle, rgba(0,181,137,0.15) 0%, transparent 70%);
     border-radius: 50%;
-  }
+  } */
   .achievements-header { text-align: center; margin-bottom: 56px; }
   .achievements-header .section-title { color: #fff; }
   .achievements-header .section-sub { color: rgba(255,255,255,0.7); margin: 0 auto; }
@@ -913,7 +913,7 @@ https://cdn.jsdelivr.net/npm/lenis@1.3.11/dist/lenis.min.css
   .blog-img img {
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: inherit;
     transition: transform 0.5s;
   }
   .blog-card:hover .blog-img img { transform: scale(1.08); }
@@ -2218,7 +2218,7 @@ width: 314px;
 
     <!-- ===== SERVICES ===== -->
     <section class="services-section" id="services">
-      <div class="images-col">
+      <div class="images-col1">
       <div class="service-decor decor-right">
         <img src="images/diver1.webp" alt>
       </div>
