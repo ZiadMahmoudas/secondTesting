@@ -847,7 +847,7 @@ https://cdn.jsdelivr.net/npm/lenis@1.3.11/dist/lenis.min.css
   }
   .branch-icon {
     width: 44px; height: 44px;
-    background: linear-gradient(135deg, var(--primary), #007eb5);
+    background: linear-gradient(180deg,#0C7C92, #0FD8FF);
     border-radius: 12px;
     display: flex;
     align-items: center;
@@ -1167,8 +1167,8 @@ https://cdn.jsdelivr.net/npm/lenis@1.3.11/dist/lenis.min.css
   .newsletter-form input::placeholder { color: rgba(255,255,255,0.65); }
   .newsletter-form input:focus { border-color: rgba(255,255,255,0.6); }
   .newsletter-form button {
-    background: #fff;
-    color: var(--primary);
+    background:var(--indigo);
+    color: #000;
     border: none;
     padding: 12px 22px;
     border-radius: 10px;
@@ -1180,7 +1180,7 @@ https://cdn.jsdelivr.net/npm/lenis@1.3.11/dist/lenis.min.css
     flex-shrink: 0;
   }
   .newsletter-form button:hover {
-    background: var(--indigo);
+    background: var(--dark-green);
     color: #fff;
     transform: translateX(-2px);
   }
@@ -1557,12 +1557,16 @@ https://cdn.jsdelivr.net/npm/lenis@1.3.11/dist/lenis.min.css
   position: relative;
   display: inline-block;
   z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 .cta-floating-arrow {
-  position: absolute;
+  position: relative;
   width: 60px;
   height: 55px;
-  top: 50%;
+  /* left: 104%; */
+  top: 17px;
   transform: translateY(-50%);
   z-index: -1;
   pointer-events: none;
@@ -1747,7 +1751,7 @@ body.lang-en .cta-floating-arrow {
 }
 
 .content-col h2 {
-    color: #004B75;
+    color: var(--indigo);
     font-size: 32px;
     font-weight: 700;
     margin-bottom: 20px;
@@ -2677,16 +2681,18 @@ width: 314px;
           <p class="cta-sub">احصل على تقييم عقاري دقيق وموثوق من خبراء معتمدين.
             نحن هنا لمساعدتك في اتخاذ القرار الصح.</p>
           <div class="cta-btn-wrapper">
-            <a href="#contact" class="cta-btn">
-              طلب عرض أسعار
-              <span class="cta-arrow">←</span>
-            </a>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none"
               viewBox="0 0 81 71" class="cta-floating-arrow">
               <path stroke="#80CAE9" stroke-linecap="round"
                 stroke-miterlimit="10" stroke-width="3.43"
                 d="M65.385 1.785c26.102 20.105 17.243 64.773-46.06 55.512M4.986 54.693l21.668-4.44-6.321 7.326 3.224 9.12-18.57-12.006z"></path>
             </svg>
+            <a href="#contact" class="cta-btn">
+              طلب عرض أسعار
+              <span class="cta-arrow">←</span>
+              
+            </a>
+          
           </div>
         </div>
       </div>
