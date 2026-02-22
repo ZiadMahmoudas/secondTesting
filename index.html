@@ -1258,12 +1258,8 @@ https://cdn.jsdelivr.net/npm/lenis@1.3.11/dist/lenis.min.css
         grid-template-columns: 1fr 1fr;
     }
 }
-  @media (max-width: 992px) {
-    .nav-links { display: none; 
-}
-    .nav-actions { display: none; }
-    .hamburger { display: flex; }
-    .branches-grid { grid-template-columns: 1fr; }
+@media(max-width:768px){
+ .branches-grid { grid-template-columns: 1fr; }
     .map-container { height: 300px; order: -1; }
     .achievements-grid { grid-template-columns: repeat(2, 1fr); }
     .blog-grid { grid-template-columns: 1fr; }
@@ -1275,6 +1271,13 @@ https://cdn.jsdelivr.net/npm/lenis@1.3.11/dist/lenis.min.css
     section { padding: 56px 0; }
     .about-stats { grid-template-columns: 1fr 1fr; }
     .services-grid { grid-template-columns: 1fr; }
+}
+  @media (max-width: 992px) {
+    .nav-links { display: none; 
+}
+    .nav-actions { display: none; }
+    .hamburger { display: flex; }
+   
   }
 
   @media (max-width: 480px) {
